@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="JpaBuddyIdeaProjectConfig" migrateIndexesAndConstraints="true" reUseTableSchema="true">
+    <option name="migrateIndexesAndConstraints" value="true" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/ma/gr02_1bt3_622_25a/model/entity" />
+    <option name="reverseEngineeringLastDbConnectionId" value="89014174-a3d0-4445-9f5b-f15385bcf895" />
+  </component>
   <component name="PersistenceUnitSettings">
     <persistence-units>
       <persistence-unit moduleName="GR02_1BT3_622_25A" name="default" framework="JPA" ormUnit="GR02_1BT3_622_25A:default" defaultDataSourceId="89014174-a3d0-4445-9f5b-f15385bcf895" />
