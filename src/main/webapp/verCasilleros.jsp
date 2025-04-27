@@ -58,6 +58,16 @@
             background-color: white;
             width: 80%;
         }
+        button {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(70, 130, 180);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+        }
         button.casillero {
             width: 100%;
             height: 100%;
@@ -86,6 +96,27 @@
             border-radius: 8px;
             text-align: center;
         }
+        .Disponibilidad {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        select {
+            margin-left: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            height: 50%;
+        }
+        .botones {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
@@ -97,15 +128,9 @@
         <div class="dashboard">
             <div class="celda">
                 <button class="casillero" onclick="mostrarEmergente(1)">1</button>
+                <p id="Disponibilidad1" hidden>disponibilidad</p>
+                <p id="Dimensiones1" hidden>dimensiones</p>
             </div>
-            <div class="celda">2</div>
-            <div class="celda">3</div>
-            <div class="celda">4</div>
-            <div class="celda">5</div>
-            <div class="celda">6</div>
-            <div class="celda">7</div>
-            <div class="celda">8</div>
-            <div class="celda">9</div>
         </div>
         <div class="seccionInferior">
             <div class="botones">
@@ -117,9 +142,24 @@
 <!-- Contenedor vista Emergente -->
 <div id="miEmergente" class="emergente">
     <div class="emergente-contenido">
-        <h2>¡Hola!</h2>
+        <h2>Casillero 1</h2>
+        <div class="Disponibilidad">
+            <h3>Disponibilidad:</h3>
+            <form action="POST">
+                <select name="Disponibilidad" id="Disponibilidad">
+                    <option value="Disponible">Disponible</option>
+                    <option value="Ocupado">Ocupado</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Averiado">Averiado</option>
+                </select>
+            </form>
+        </div>
+        <h3>Dimensiones:</h3>
         <p id="textoEmergente">Este es un mensaje emergente.</p>
-        <button onclick="cerrarEmergente()">Cerrar</button>
+        <div class="botones">
+            <button onclick="cerrarEmergente()">Cerrar</button>
+            <button onclick="cerrarEmergente()">Actualizar</button>
+        </div>
     </div>
 </div>
 <!-- Codigo JavaScript para controlar las funciones de la pestaña emergente -->
@@ -135,4 +175,5 @@
 </script>
 </body>
 </html>
+
 
