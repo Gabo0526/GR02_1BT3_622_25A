@@ -117,6 +117,7 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             height: 50%;
+            width: 100%;
         }
         .botones {
             display: flex;
@@ -124,6 +125,13 @@
             align-items: center;
             margin-top: 10px;
             gap: 10px;
+        }
+        .disponibilidadSelect {
+            width: 100%;
+        }
+        .botonSelect {
+            margin-left: 10px;
+            width: 100%;
         }
     </style>
 </head>
@@ -143,6 +151,7 @@
             %>
             <div class="celda">
                 <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
+                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
                 <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
                 <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
             </div>
@@ -163,13 +172,15 @@
         <h2>Casillero 1</h2>
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
-            <form action="POST">
-                <select name="Disponibilidad" id="disponibilidadSelect">
+            <form action="CasilleroServlet" method="post">
+                <input type="hidden" id="idCasillero" value="">
+                <select class="disponibilidadSelect" id="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
                     <option value="Ocupado">Ocupado</option>
                     <option value="Pendiente">Pendiente</option>
                     <option value="Averiado">Averiado</option>
                 </select>
+                <button class="botonSelect">Actualizar</button>
             </form>
         </div>
         <div class="Dimensiones">
@@ -178,7 +189,6 @@
         </div>
         <div class="botones">
             <button onclick="cerrarEmergente()">Cerrar</button>
-            <button onclick="cerrarEmergente()">Actualizar</button>
         </div>
     </div>
 </div>
@@ -188,6 +198,7 @@
         document.getElementById("miEmergente").style.display = "flex";
         document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
         document.getElementById("disponibilidadSelect").value = document.getElementById("Disponibilidad"+numero).innerText;
+        document.getElementById("idCasillero").value = document.getElementById("ID"+numero).innerText;
     }
     function cerrarEmergente() {
         document.getElementById("miEmergente").style.display = "none";

@@ -46,7 +46,7 @@ public class CasilleroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
         String idCasillero = request.getParameter("idCasillero");
-        String estado = request.getParameter("estado");
+        String estado = request.getParameter("disponibilidadSelect");
 
         CasilleroDAO casilleroDAO = new CasilleroDAO();
 
