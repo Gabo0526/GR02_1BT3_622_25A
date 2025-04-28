@@ -181,7 +181,7 @@
 
         <div class="button-container">
             <button type="submit" class="button primary">Crear</button>
-            <a href="admin.jsp" class="button">Cancelar</a>
+            <a href="home.jsp" class="button">Cancelar</a>
         </div>
     </form>
 </div>
