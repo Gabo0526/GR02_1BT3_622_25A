@@ -1,15 +1,16 @@
 package com.ma.gr02_1bt3_622_25a.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.DynamicInsert;
 
 @Entity
 @Table(name = "Bloque_Casilleros", schema = "railway")
+@DynamicInsert
+@NamedQuery(name = "BloqueCasillero.findUltima", query = "SELECT b FROM BloqueCasillero b WHERE b.id = (SELECT MAX(b2.id) FROM BloqueCasillero b2)")
 public class BloqueCasillero {
     @Id
-    @Column(name = "id_bloque", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_bloque", nullable = true)
     private Integer id;
 
     @Column(name = "nro_filas", nullable = false)

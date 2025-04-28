@@ -44,8 +44,7 @@ public class CasilleroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String idBloque = request.getParameter("id");
+            throws IOException, ServletException {
         String nroFilas = request.getParameter("nroFilas");
         String nroColumnas = request.getParameter("nroColumnas");
         String ancho = request.getParameter("ancho");
@@ -53,12 +52,13 @@ public class CasilleroServlet extends HttpServlet {
         String altura = request.getParameter("altura");
 
         BloqueCasillero bloqueCasillero = new BloqueCasillero();
-        bloqueCasillero.setId(Integer.parseInt(idBloque));
         bloqueCasillero.setNroFilas(Integer.parseInt(nroFilas));
         bloqueCasillero.setNroColumnas(Integer.parseInt(nroColumnas));
 
         BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
         bloqueCasilleroDAO.save(bloqueCasillero);
+
+        bloqueCasillero = bloqueCasilleroDAO.obtenerUltimo();
 
         CasilleroDAO casilleroDAO = new CasilleroDAO();
 
@@ -71,5 +71,7 @@ public class CasilleroServlet extends HttpServlet {
             casillero.setAltura(BigDecimal.valueOf(Integer.parseInt(altura)));
             casilleroDAO.save(casillero);
         }
+
+        request.getRequestDispatcher("home.jsp").forward(request, response);
     }
 }

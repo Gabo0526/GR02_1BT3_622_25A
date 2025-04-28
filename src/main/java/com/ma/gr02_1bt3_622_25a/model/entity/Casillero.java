@@ -2,6 +2,7 @@ package com.ma.gr02_1bt3_622_25a.model.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.math.BigDecimal;
 
@@ -9,10 +10,12 @@ import java.math.BigDecimal;
 @Table(name = "Casillero", schema = "railway", uniqueConstraints = {
         @UniqueConstraint(name = "Casillero_pk", columnNames = {"numero"})
 })
+@DynamicInsert
 @NamedQuery(name = "Casillero.findByBloque", query = "SELECT c FROM Casillero c JOIN FETCH c.idBloque where c.idBloque = ?1")
 public class Casillero {
     @Id
-    @Column(name = "id_casillero", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_casillero", nullable = true)
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
