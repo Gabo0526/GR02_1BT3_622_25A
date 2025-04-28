@@ -147,10 +147,6 @@
     <h2 class="page-title">Crear Bloque de Casilleros</h2>
 
     <form action="CasilleroServlet" method="post">
-        <div class="form-group">
-            <label class="form-label">Bloque número:</label>
-            <input type="number" name="id" class="form-input" min="1" required>
-        </div>
 
         <div class="form-group">
             <label class="form-label">Número de filas:</label>
