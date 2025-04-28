@@ -73,8 +73,8 @@
 <body>
 <div class="card">
     <h2>Login</h2>
-    <form action="SvUsuarios" method="get">
-        <select name="estado">
+    <form action="UsuarioServlet" method="get">
+        <select name="rol">
             <option value="Estudiante">Estudiante</option>
             <option value="Administrador">Administrador</option>
         </select>
