@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 })
 @DynamicInsert
 @NamedQuery(name = "Casillero.findByBloque", query = "SELECT c FROM Casillero c JOIN FETCH c.idBloque where c.idBloque = ?1")
+@NamedQuery(name = "Casillero.updateState", query = "UPDATE Casillero c SET c.estado = ?1 WHERE c.id = ?2")
 public class Casillero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

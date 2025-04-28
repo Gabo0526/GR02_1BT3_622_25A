@@ -146,7 +146,7 @@
 <div class="container">
     <h2 class="page-title">Crear Bloque de Casilleros</h2>
 
-    <form action="CasilleroServlet" method="post">
+    <form action="BloqueCasillerosServlet" method="post">
 
         <div class="form-group">
             <label class="form-label">Número de filas:</label>
