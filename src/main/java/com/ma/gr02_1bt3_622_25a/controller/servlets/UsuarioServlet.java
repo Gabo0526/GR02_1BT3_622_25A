@@ -29,6 +29,8 @@ public class UsuarioServlet extends HttpServlet {
             // Guardar el usuario en la sesión
             HttpSession session = request.getSession();
             session.setAttribute("usuario", usuario);
+            session.setAttribute("nombreUsuario", usuario.getNombre() + " " + usuario.getApellido());
+            session.setAttribute("rolUsuario", rol);
 
             RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
             dispatcher.forward(request, response);

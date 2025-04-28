@@ -169,7 +169,7 @@
       if (nombreUsuario != null) {
         System.out.println(nombreUsuario);
       } else {
-        System.out.println("Usuario");
+        out.println("Usuario");
       }
     %>
   </h2>
@@ -179,14 +179,15 @@
     <%
       String rolUsuario = (String) session.getAttribute("rolUsuario");
       if ("Administrador".equals(rolUsuario)) {
-        System.out.println("<span class='role-badge role-admin'>Administrador</span>");
+        out.println("<span class='role-badge role-admin'>Administrador</span>");
       } else if ("Estudiante".equals(rolUsuario)) {
-        System.out.println("<span class='role-badge role-student'>Estudiante</span>");
+        out.println("<span class='role-badge role-student'>Estudiante</span>");
       } else {
-        System.out.println("<span class='role-badge'>Invitado</span>");
+        out.println("<span class='role-badge'>Invitado</span>");
       }
     %>
   </div>
+
 
   <%
     if ("Estudiante".equals(rolUsuario)) {
