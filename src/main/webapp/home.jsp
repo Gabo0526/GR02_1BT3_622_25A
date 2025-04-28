@@ -193,7 +193,7 @@
     if ("Estudiante".equals(rolUsuario)) {
   %>
   <div class="button-grid">
-    <a href="verCasilleros.jsp" class="chalk-button active">Ver Casilleros</a>
+    <a href="CasilleroServlet?idBloque=1" class="chalk-button active">Ver Casilleros</a>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
