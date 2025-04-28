@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 @Table(name = "Casillero", schema = "railway", uniqueConstraints = {
         @UniqueConstraint(name = "Casillero_pk", columnNames = {"numero"})
 })
+@NamedQuery(name = "Casillero.findByBloque", query = "SELECT c FROM Casillero c JOIN FETCH c.idBloque where c.idBloque = ?1")
 public class Casillero {
     @Id
     @Column(name = "id_casillero", nullable = false)
@@ -91,4 +92,16 @@ public class Casillero {
         this.altura = altura;
     }
 
+    @Override
+    public String toString() {
+        return "Casillero{" +
+                "id=" + id +
+                ", idBloque=" + idBloque +
+                ", numero=" + numero +
+                ", estado='" + estado + '\'' +
+                ", ancho=" + ancho +
+                ", profundidad=" + profundidad +
+                ", altura=" + altura +
+                '}';
+    }
 }

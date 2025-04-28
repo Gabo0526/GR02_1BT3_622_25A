@@ -42,4 +42,12 @@ public class BloqueCasillero {
         this.nroColumnas = nroColumnas;
     }
 
+    @Override
+    public String toString() {
+        return "BloqueCasillero{" +
+                "id=" + id +
+                ", nroFilas=" + nroFilas +
+                ", nroColumnas=" + nroColumnas +
+                '}';
+    }
 }
