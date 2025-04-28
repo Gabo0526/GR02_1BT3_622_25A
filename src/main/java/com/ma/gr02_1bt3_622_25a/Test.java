@@ -27,7 +27,7 @@ public class Test {
 
         // Obtener casilleros por bloque:
         BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
-        BloqueCasillero bloqueCasillero = bloqueCasilleroDAO.find(1);
+        BloqueCasillero bloqueCasillero = bloqueCasilleroDAO.find(2);
         System.out.println(bloqueCasillero);
 
         List<Casillero> casillerosBloque1 = casilleroDAO.obtenerPorBloque(bloqueCasillero);
