@@ -146,28 +146,23 @@
 <div class="container">
     <h2 class="page-title">Crear Bloque de Casilleros</h2>
 
-    <form action="crearBloque" method="post">
+    <form action="CasilleroServlet" method="post">
         <div class="form-group">
             <label class="form-label">Bloque número:</label>
-            <input type="number" name="filas" class="form-input" min="1" required>
+            <input type="number" name="id" class="form-input" min="1" required>
         </div>
 
         <div class="form-group">
             <label class="form-label">Número de filas:</label>
-            <input type="number" name="filas" class="form-input" min="1" required>
+            <input type="number" name="nroFilas" class="form-input" min="1" required>
         </div>
 
         <div class="form-group">
             <label class="form-label">Número de columnas:</label>
-            <input type="number" name="columnas" class="form-input" min="1" required>
+            <input type="number" name="nroColumnas" class="form-input" min="1" required>
         </div>
 
         <div class="section-title">Casillero</div>
-
-        <div class="form-group">
-            <label class="form-label">Largo:</label>
-            <input type="number" name="largo" class="form-input" step="0.01" min="0" required>
-        </div>
 
         <div class="form-group">
             <label class="form-label">Ancho:</label>
@@ -175,8 +170,13 @@
         </div>
 
         <div class="form-group">
-            <label class="form-label">Alto:</label>
-            <input type="number" name="alto" class="form-input" step="0.01" min="0" required>
+            <label class="form-label">Profundidad:</label>
+            <input type="number" name="profundidad" class="form-input" step="0.01" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Altura:</label>
+            <input type="number" name="altura" class="form-input" step="0.01" min="0" required>
         </div>
 
         <div class="button-container">
