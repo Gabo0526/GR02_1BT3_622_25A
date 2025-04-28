@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.Casillero" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: DVC
   Date: 27/4/2025
@@ -103,6 +104,13 @@
             align-items: center;
             padding: 10px;
         }
+        .Dimensiones {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
         select {
             margin-left: 10px;
             padding: 5px;
@@ -120,17 +128,27 @@
     </style>
 </head>
 <body>
+<%
+    List<Casillero> casilleros = (List<Casillero>) request.getAttribute("casilleros");
+%>
 <div class="container">
     <div class="Titulo">
-        <h1>Bloque Casilleros</h1>
+        <h1>Bloque Casilleros N°:</h1>
+        <h1 id="numeroBloque">1</h1>
     </div>
     <div class="bloque">
         <div class="dashboard">
+            <%
+                for (Casillero r : casilleros) {
+            %>
             <div class="celda">
-                <button class="casillero" onclick="mostrarEmergente(1)">1</button>
-                <p id="Disponibilidad1" hidden>disponibilidad</p>
-                <p id="Dimensiones1" hidden>dimensiones</p>
+                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
+                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
+                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
             </div>
+            <%
+                }
+            %>
         </div>
         <div class="seccionInferior">
             <div class="botones">
@@ -146,7 +164,7 @@
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
             <form action="POST">
-                <select name="Disponibilidad" id="Disponibilidad">
+                <select name="Disponibilidad" id="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
                     <option value="Ocupado">Ocupado</option>
                     <option value="Pendiente">Pendiente</option>
@@ -154,8 +172,10 @@
                 </select>
             </form>
         </div>
-        <h3>Dimensiones:</h3>
-        <p id="textoEmergente">Este es un mensaje emergente.</p>
+        <div class="Dimensiones">
+            <h3>Dimensiones:</h3>
+            <p id="textoDimensiones"></p>
+        </div>
         <div class="botones">
             <button onclick="cerrarEmergente()">Cerrar</button>
             <button onclick="cerrarEmergente()">Actualizar</button>
@@ -166,8 +186,8 @@
 <script>
     function mostrarEmergente(numero) {
         document.getElementById("miEmergente").style.display = "flex";
-        document.getElementById("textoEmergente").innerText =
-            "Has seleccionado el casillero " + numero;
+        document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
+        document.getElementById("disponibilidadSelect").value = document.getElementById("Disponibilidad"+numero).innerText;
     }
     function cerrarEmergente() {
         document.getElementById("miEmergente").style.display = "none";
