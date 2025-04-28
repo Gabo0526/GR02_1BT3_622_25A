@@ -4,12 +4,14 @@ import com.ma.gr02_1bt3_622_25a.model.dao.BloqueCasilleroDAO;
 import com.ma.gr02_1bt3_622_25a.model.dao.CasilleroDAO;
 import com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero;
 import com.ma.gr02_1bt3_622_25a.model.entity.Casillero;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -48,15 +50,14 @@ public class CasilleroServlet extends HttpServlet {
         String idCasillero = request.getParameter("idCasillero");
         String estado = request.getParameter("disponibilidadSelect");
 
+        System.out.println(idCasillero);
+
         CasilleroDAO casilleroDAO = new CasilleroDAO();
 
         if (casilleroDAO.actualizarEstadoCasillero(Integer.parseInt(idCasillero), estado)) {
-            HttpSession session = request.getSession();
-            request.setAttribute("casilleros", session.getAttribute("casilleros"));
-            request.setAttribute("bloque", session.getAttribute("bloque"));
-            request.setAttribute("usuario", session.getAttribute("usuario"));
-
-            request.getRequestDispatcher("verCasilleros.jsp").forward(request, response);
+            request.setAttribute("idBloque", "1");
+            // Esto redirige a la misma URL pero con el método GET
+            response.sendRedirect(request.getRequestURI() + "?idBloque=" + request.getAttribute("idBloque"));
         } else {
             response.sendRedirect("home.jsp");
         }

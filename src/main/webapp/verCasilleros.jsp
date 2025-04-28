@@ -173,8 +173,8 @@
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
             <form action="CasilleroServlet" method="post">
-                <input type="hidden" id="idCasillero" value="">
-                <select class="disponibilidadSelect" id="disponibilidadSelect">
+                <input type="hidden" id="idCasillero" name="idCasillero">
+                <select class="disponibilidadSelect" id="disponibilidadSelect" name="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
                     <option value="Ocupado">Ocupado</option>
                     <option value="Pendiente">Pendiente</option>
