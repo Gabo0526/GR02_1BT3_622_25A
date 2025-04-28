@@ -69,11 +69,11 @@
 <body>
 <div class="card">
   <h2>Registro</h2>
-  <form action="SvRegistros" method="post">
+  <form action="UsuarioServlet" method="post">
     <input type="text" name="cedula" placeholder="Cedula" />
     <input type="text" name="nombre" placeholder="Nombre" />
     <input type="text" name="apellido" placeholder="Apellido" />
-    <input type="text" name="codigo Unico" placeholder="Codigo Unico" />
+    <input type="text" name="codigoUnico" placeholder="Codigo Unico" />
     <input type="email" name="email" placeholder="Email" />
     <input type="password" name="password" placeholder="Password" />
     <select name="facultad">

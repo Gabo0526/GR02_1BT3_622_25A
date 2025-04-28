@@ -17,7 +17,6 @@ public class UsuarioServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String correo = request.getParameter("email");
         String clave = request.getParameter("password");
         String rol = request.getParameter("rol");
@@ -41,7 +40,35 @@ public class UsuarioServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws IOException {
+        String cedula = request.getParameter("cedula");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        String codigoUnico = request.getParameter("codigoUnico");
 
+        if (codigoUnico == null || codigoUnico.isEmpty()) {
+            response.sendRedirect("register.jsp");
+            return;
+        }
+
+        String correo = request.getParameter("email");
+        String clave = request.getParameter("password");
+        String facultad = request.getParameter("facultad");
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = new Usuario();
+
+        usuario.setCedula(cedula);
+        usuario.setNombre(nombre);
+        usuario.setApellido(apellido);
+        usuario.setCodigoUnico(codigoUnico);
+        usuario.setCorreo(correo);
+        usuario.setClave(clave);
+        usuario.setFacultad(facultad);
+        System.out.println(usuario);
+
+        usuarioDAO.save(usuario);
+
+        response.sendRedirect("index.jsp");
     }
 }
