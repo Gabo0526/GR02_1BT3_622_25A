@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario", schema = "railway")
+@NamedQuery(name = "Usuario.findUser", query = "SELECT u FROM Usuario u WHERE u.correo = ?1 AND u.clave = ?2")
 public class Usuario {
     @Id
     @Column(name = "cedula", nullable = false, length = 10)
@@ -84,4 +85,16 @@ public class Usuario {
         this.facultad = facultad;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "cedula='" + cedula + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", codigoUnico='" + codigoUnico + '\'' +
+                ", correo='" + correo + '\'' +
+                ", clave='" + clave + '\'' +
+                ", facultad='" + facultad + '\'' +
+                '}';
+    }
 }

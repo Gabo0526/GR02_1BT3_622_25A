@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario_Rol", schema = "railway")
+@NamedQuery(name = "UsuarioRol.findByUser", query = "SELECT ur FROM UsuarioRol ur JOIN FETCH ur.idRol where ur.idUsuario = ?1")
 public class UsuarioRol {
     @EmbeddedId
     private UsuarioRolId id;
