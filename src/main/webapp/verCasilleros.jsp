@@ -1,4 +1,5 @@
 <%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.Casillero" %>
+<%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero" %>
 <%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: DVC
@@ -7,6 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%BloqueCasillero bloqueCasillero = (BloqueCasillero) session.getAttribute("bloque");%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,8 +41,8 @@
         }
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(3, 100px); /* 3 columnas */
-            grid-template-rows: repeat(3, 100px); /* 3 filas */
+            grid-template-columns: repeat(<%= bloqueCasillero.getNroColumnas()%>, 100px); /* 3 columnas */
+            grid-template-rows: repeat(<%= bloqueCasillero.getNroFilas()%>, 100px); /* 3 filas */
             gap: 10px; /* Espacio entre los divs */
             background-color: rgb(70, 130, 180);
             padding: 10px; /* Espacio alrededor de la cuadrícula */
@@ -172,7 +174,7 @@
         <h2>Casillero 1</h2>
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
-            <form action="CasilleroServlet" method="post">
+                <form action="CasilleroServlet" method="post" style="<%=(session.getAttribute("rolUsuario").equals("Estudiante") ? "display:none;" : "")%>">
                 <input type="hidden" id="idCasillero" name="idCasillero">
                 <select class="disponibilidadSelect" id="disponibilidadSelect" name="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
@@ -181,7 +183,9 @@
                     <option value="Averiado">Averiado</option>
                 </select>
                 <button class="botonSelect">Actualizar</button>
-            </form>
+                </form>
+            <p id="txtDisponibilidad" style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>"></p>
+
         </div>
         <div class="Dimensiones">
             <h3>Dimensiones:</h3>
@@ -198,6 +202,7 @@
         document.getElementById("miEmergente").style.display = "flex";
         document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
         document.getElementById("disponibilidadSelect").value = document.getElementById("Disponibilidad"+numero).innerText;
+        document.getElementById("txtDisponibilidad").innerText = document.getElementById("Disponibilidad"+numero).innerText;
         document.getElementById("idCasillero").value = document.getElementById("ID"+numero).innerText;
     }
     function cerrarEmergente() {
