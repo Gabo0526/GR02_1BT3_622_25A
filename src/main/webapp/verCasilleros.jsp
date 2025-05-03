@@ -511,26 +511,14 @@
 
     <!-- Barra de navegación de bloques -->
     <div class="barra-bloques">
+        <%int numBloques = (Integer) session.getAttribute("nroBloques");
+            for (int i = 1; i <= numBloques; i++){
+        %>
         <form action="CasilleroServlet" method="get" style="display: inline;">
-            <input type="hidden" name="idBloque" value="1" />
-            <button type="submit" class="boton-bloque">1</button>
+            <input type="hidden" name="idBloque" value="<%=i%>" />
+            <button type="submit" class="boton-bloque"><%=i%></button>
         </form>
-        <form action="CasilleroServlet" method="get" style="display: inline;">
-            <input type="hidden" name="idBloque" value="2" />
-            <button type="submit" class="boton-bloque">2</button>
-        </form>
-        <form action="CasilleroServlet" method="get" style="display: inline;">
-            <input type="hidden" name="idBloque" value="3" />
-            <button type="submit" class="boton-bloque">3</button>
-        </form>
-        <form action="CasilleroServlet" method="get" style="display: inline;">
-            <input type="hidden" name="idBloque" value="4" />
-            <button type="submit" class="boton-bloque">4</button>
-        </form>
-        <form action="CasilleroServlet" method="get" style="display: inline;">
-            <input type="hidden" name="idBloque" value="5" />
-            <button type="submit" class="boton-bloque">5</button>
-        </form>
+        <%}%>
     </div>
 
     <!-- Leyenda de estados de casilleros -->
