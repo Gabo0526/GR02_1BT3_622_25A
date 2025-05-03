@@ -30,6 +30,8 @@ public class CasilleroServlet extends HttpServlet {
         CasilleroDAO casilleroDAO = new CasilleroDAO();
         List<Casillero> casilleros = casilleroDAO.obtenerPorBloque(bloqueCasillero);
 
+        int nroBloques = bloqueCasilleroDAO.contarBloques();
+
         for (Casillero casillero : casilleros) {
             System.out.println(casillero);
         }
@@ -40,6 +42,8 @@ public class CasilleroServlet extends HttpServlet {
         session.setAttribute("casilleros", casilleros);
         request.setAttribute("bloque", bloqueCasillero);
         session.setAttribute("bloque", bloqueCasillero);
+        request.setAttribute("nroBloques", nroBloques);
+        session.setAttribute("nroBloques", nroBloques);
         request.setAttribute("usuario", session.getAttribute("usuario"));
 
         request.getRequestDispatcher("verCasilleros.jsp").forward(request, response);
