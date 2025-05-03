@@ -6,6 +6,4 @@ public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
     public AlquilerCasilleroDAO() {
         super(AlquilerCasillero.class);
     }
-
-
 }
