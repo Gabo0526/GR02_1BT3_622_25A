@@ -98,4 +98,16 @@ public class AlquilerCasillero {
         this.estadoAlquiler = estadoAlquiler;
     }
 
+    @Override
+    public String toString() {
+        return "AlquilerCasillero{" +
+                "id=" + id +
+                ", idUsuario=" + idUsuario +
+                ", idCasillero=" + idCasillero +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaVencimiento=" + fechaVencimiento +
+                ", detalleAlquiler=" + detalleAlquiler +
+                ", estadoAlquiler='" + estadoAlquiler + '\'' +
+                '}';
+    }
 }

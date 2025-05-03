@@ -1,5 +1,6 @@
 package com.ma.gr02_1bt3_622_25a.controller.servlets;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -51,7 +52,11 @@ public class SubirImagenServlet extends HttpServlet {
         archivo.write(destino.getAbsolutePath());
 
         System.out.println("Archivo guardado en: " + destino.getAbsolutePath());
-        response.getWriter().println("Imagen subida con exito: " + nombreArchivoUnico);
+        //response.getWriter().println("Imagen subida con exito: " + nombreArchivoUnico);
+
+        request.setAttribute("ruta", RUTA_ABSOLUTA + nombreArchivoUnico );
+        RequestDispatcher dispatcher = request.getRequestDispatcher("SolicitudServlet");
+        dispatcher.forward(request, response);
     }
 
     // Metodo auxiliar para obtener la extensión de un archivo

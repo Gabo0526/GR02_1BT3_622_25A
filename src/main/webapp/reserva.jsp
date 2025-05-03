@@ -123,7 +123,7 @@
     <form action="subirImagen" method="post" enctype="multipart/form-data" id="reservaForm">
         <!-- Hidden field to store the casillero ID -->
         <input type="hidden" id="casilleroId" name="casilleroId" value="<%= request.getParameter("casilleroId") %>">
-
+        <input type="hidden" id="precioId" name="precio" value="6.5">
         <div class="section">
             <div class="section-title">Información del Casillero</div>
             <div class="contract-box">
