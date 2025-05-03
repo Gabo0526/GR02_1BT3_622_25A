@@ -202,9 +202,9 @@
   </div>
   <% } else if ("Administrador".equals(rolUsuario)) { %>
   <div class="button-grid">
+    <a href="CasilleroServlet?idBloque=1" class="chalk-button active">Ver Casilleros</a>
     <a href="createLockerBlock.jsp" class="chalk-button active">Crear Bloque</a>
     <a href="verSolicitudes.jsp" class="chalk-button active">Ver Solicitudes</a>
-    <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>

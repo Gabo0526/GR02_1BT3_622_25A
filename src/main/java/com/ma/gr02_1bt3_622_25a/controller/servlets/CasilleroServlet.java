@@ -33,6 +33,7 @@ public class CasilleroServlet extends HttpServlet {
         for (Casillero casillero : casilleros) {
             System.out.println(casillero);
         }
+        System.out.println(casilleros.size());
 
         HttpSession session = request.getSession();
         request.setAttribute("casilleros", casilleros);
