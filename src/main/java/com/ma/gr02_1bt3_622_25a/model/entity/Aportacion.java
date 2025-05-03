@@ -11,6 +11,7 @@ import java.util.Map;
 @Table(name = "Aportacion", schema = "railway")
 public class Aportacion {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_plan", nullable = false)
     private Integer id;
 
