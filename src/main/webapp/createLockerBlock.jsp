@@ -149,6 +149,11 @@
     <form action="BloqueCasillerosServlet" method="post">
 
         <div class="form-group">
+            <label class="form-label">Nombre del bloque:</label>
+            <input type="text" name="nombreBloque" class="form-input" min="1" required>
+        </div>
+
+        <div class="form-group">
             <label class="form-label">Número de filas:</label>
             <input type="number" name="nroFilas" class="form-input" min="1" required>
         </div>
