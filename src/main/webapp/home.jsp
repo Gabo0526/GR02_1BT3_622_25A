@@ -216,6 +216,15 @@
   <a href="logout.jsp" class="logout-btn">Cerrar sesión</a>
 </div>
 
+<%--Borrar Fragmento--%>
+<div class="SubirImagen">
+  <form action="subirImagen" method="post" enctype="multipart/form-data">
+    <input type="file" name="imagen" accept="image/*" required />
+    <input type="submit" value="Subir Imagen" />
+  </form>
+</div>
+<%--Borrar Fragmento--%>
+
 <div class="footer">
   Sistema de Gestión de Casilleros &copy; 2025
 </div>
