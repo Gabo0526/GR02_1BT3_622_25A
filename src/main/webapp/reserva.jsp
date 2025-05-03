@@ -198,7 +198,12 @@
     // Función para cancelar la reserva
     function cancelarReserva() {
         if (confirm('¿Está seguro que desea cancelar la reserva?')) {
-            window.location.href = 'index.jsp';
+            // Get the ID of the bloque from the URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const bloqueId = urlParams.get('bloqueId') || "1"; // Default to 1 if not present
+
+            // Redirect to the servlet to handle the request properly
+            window.location.href = 'CasilleroServlet?idBloque=' + bloqueId;
         }
     }
 
