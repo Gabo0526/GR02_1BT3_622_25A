@@ -202,9 +202,20 @@
     function mostrarEmergente(numero) {
         document.getElementById("miEmergente").style.display = "flex";
         document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
-        document.getElementById("disponibilidadSelect").value = document.getElementById("Disponibilidad"+numero).innerText;
-        document.getElementById("txtDisponibilidad").innerText = document.getElementById("Disponibilidad"+numero).innerText;
+
+        const disponibilidad = document.getElementById("Disponibilidad"+numero).innerText;
+
+        document.getElementById("disponibilidadSelect").value = disponibilidad;
+        document.getElementById("txtDisponibilidad").innerText = disponibilidad;
         document.getElementById("idCasillero").value = document.getElementById("ID"+numero).innerText;
+
+        // Mostrar o no por disponibilidad
+        const btnReservar = document.querySelector(".botones button:first-child");
+        if (disponibilidad === "Disponible" && <%=!session.getAttribute("rolUsuario").equals("Administrador")%>) {
+            btnReservar.style.display = "inline-block";
+        } else {
+            btnReservar.style.display = "none";
+        }
     }
     function cerrarEmergente() {
         document.getElementById("miEmergente").style.display = "none";
