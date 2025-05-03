@@ -30,7 +30,6 @@ public class SolicitudServlet extends HttpServlet {
 
         if (precio == null || precio.isEmpty()) {
             response.sendRedirect("solicitudServlet.jsp");
-            return;
         }
 
         AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();

@@ -20,6 +20,9 @@ public class BloqueCasillero {
     @Column(name = "nro_columnas", nullable = false)
     private Integer nroColumnas;
 
+    @Column(name = "nombre_bloque", nullable = false)
+    private String nombreBloque;
+
     public Integer getId() {
         return id;
     }
@@ -42,6 +45,14 @@ public class BloqueCasillero {
 
     public void setNroColumnas(Integer nroColumnas) {
         this.nroColumnas = nroColumnas;
+    }
+
+    public String getNombreBloque() {
+        return nombreBloque;
+    }
+
+    public void setNombreBloque(String nombreBloque) {
+        this.nombreBloque = nombreBloque;
     }
 
     @Override

@@ -30,6 +30,7 @@ public class BloqueCasillerosServlet extends HttpServlet {
         String ancho = request.getParameter("ancho");
         String profundidad = request.getParameter("profundidad");
         String altura = request.getParameter("altura");
+        String nombreBloque = request.getParameter("nombreBloque");
 
         BloqueCasillero bloqueCasillero = new BloqueCasillero();
         bloqueCasillero.setNroFilas(Integer.parseInt(nroFilas));
