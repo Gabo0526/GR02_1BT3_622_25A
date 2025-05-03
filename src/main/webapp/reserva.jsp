@@ -120,12 +120,22 @@
     </div>
     <% } %>
 
-    <form action="subirImagen" method="post" enctype="multipart/form-data" id="reservaForm">
+    <form action="ReservaServlet" method="post" enctype="multipart/form-data" id="reservaForm">
+        <!-- Hidden field to store the casillero ID -->
+        <input type="hidden" id="casilleroId" name="casilleroId" value="<%= request.getParameter("casilleroId") %>">
+
+        <div class="section">
+            <div class="section-title">Información del Casillero</div>
+            <div class="contract-box">
+                <p>Estás por reservar el casillero número: <strong><%= request.getParameter("casilleroId") %></strong></p>
+            </div>
+        </div>
+
         <div class="section">
             <div class="section-title">Información del Contrato</div>
             <div class="contract-box">
                 <p>Por favor, revise detenidamente los términos y condiciones del contrato antes de continuar.</p>
-                <p><a href="verContrato.jsp" target="_blank" class="contract-link">Ver contrato completo</a></p>
+                <p><a href="https://forested-asterisk-730.notion.site/T-rminos-y-Condiciones-Lockers-1c9c6c5f983380a29b55c7e34991314b" target="_blank" class="contract-link">Ver contrato completo</a></p>
             </div>
 
             <div class="checkbox-container">
@@ -148,7 +158,7 @@
 
         <div class="button-group">
             <button type="button" class="btn btn-cancel" onclick="cancelarReserva()">Cancelar</button>
-                <button type="submit" class="btn btn-reserve" id="btnReservar" value="Subir Imagen" disabled>Reservar</button>
+            <button type="submit" class="btn btn-reserve" id="btnReservar" disabled>Reservar</button>
         </div>
     </form>
 </div>
