@@ -167,9 +167,13 @@
     <%
       String nombreUsuario = (String) session.getAttribute("nombreUsuario");
       if (nombreUsuario != null) {
-        System.out.println(nombreUsuario);
-      } else {
-        out.println("Usuario");
+    %>
+    <%= nombreUsuario %>
+    <%
+    } else {
+    %>
+    Usuario
+    <%
       }
     %>
   </h2>
@@ -179,11 +183,17 @@
     <%
       String rolUsuario = (String) session.getAttribute("rolUsuario");
       if ("Administrador".equals(rolUsuario)) {
-        out.println("<span class='role-badge role-admin'>Administrador</span>");
-      } else if ("Estudiante".equals(rolUsuario)) {
-        out.println("<span class='role-badge role-student'>Estudiante</span>");
-      } else {
-        out.println("<span class='role-badge'>Invitado</span>");
+    %>
+    <span class="role-badge role-admin">Administrador</span>
+    <%
+    } else if ("Estudiante".equals(rolUsuario)) {
+    %>
+    <span class="role-badge role-student">Estudiante</span>
+    <%
+    } else {
+    %>
+    <span class="role-badge">Invitado</span>
+    <%
       }
     %>
   </div>
