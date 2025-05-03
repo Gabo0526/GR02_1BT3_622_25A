@@ -16,61 +16,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mirror Casilleros</title>
     <style>
+        /* Modern Locker Management System Stylesheet */
+        :root {
+            --primary: #3f51b5;
+            --primary-dark: #303f9f;
+            --primary-light: #c5cae9;
+            --accent: #ff4081;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+            --occupied: #4e4c4b;
+            --pending: #9c27b0;
+            --damaged: #f44336;
+            --text-light: #ffffff;
+            --text-dark: #212121;
+            --text-secondary: #757575;
+            --background: #f5f5f5;
+            --card: #ffffff;
+            --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: rgb(255, 255, 255);
+            font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background);
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            color: var(--text-dark);
         }
+
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            height: 100%;
+            max-width: 1200px;
+            padding: 1rem;
         }
+
+        /* Header Styling */
+        .Titulo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .Titulo h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        #numeroBloque {
+            background-color: var(--primary);
+            color: var(--text-light);
+            padding: 0.2rem 0.8rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Navigation Buttons */
+        .boton-home {
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 1rem 0;
+        }
+
+        .boton-home:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Block Navigation Bar */
+        .barra-bloques {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            width: 100%;
+            max-width: 500px;
+            padding: 0.5rem;
+            background-color: var(--card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .boton-bloque {
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            min-width: 2.5rem;
+            min-height: 2.5rem;
+            width: auto;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .boton-bloque:hover {
+            background-color: var(--primary);
+            color: var(--text-light);
+            transform: scale(1.05);
+        }
+
+        /* Locker Grid */
         .bloque {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: rgb(70, 130, 180);
+            background-color: var(--card);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            width: 100%;
+            max-width: 800px;
         }
+
         .dashboard {
             display: grid;
-            grid-template-columns: repeat(<%= bloqueCasillero.getNroColumnas()%>, 100px); /* 3 columnas */
-            grid-template-rows: repeat(<%= bloqueCasillero.getNroFilas()%>, 100px); /* 3 filas */
-            gap: 10px; /* Espacio entre los divs */
-            background-color: rgb(70, 130, 180);
-            padding: 10px; /* Espacio alrededor de la cuadrícula */
-            width: min-content;
+            grid-template-columns: repeat(<%= bloqueCasillero.getNroColumnas()%>, 1fr);
+            grid-template-rows: repeat(<%= bloqueCasillero.getNroFilas()%>, 1fr);
+            gap: 0.8rem;
+            padding: 1rem;
+            width: auto;
+            background-color: var(--background);
+            border-radius: 8px;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
         }
+
         .celda {
-            background-color: rgb(69, 238, 69);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background-color: var(--success);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            aspect-ratio: 1 / 1;
+            position: relative;
+            width: 5rem;
+            height: 5rem;
         }
-        .seccionInferior {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            width: 80%;
+
+        .celda:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        button {
-            width: 100%;
-            height: 100%;
-            background-color: rgb(70, 130, 180);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 20px;
-        }
+
         button.casillero {
             width: 100%;
             height: 100%;
@@ -79,100 +194,302 @@
             padding: 0;
             margin: 0;
             cursor: pointer;
-            font-size: 20px;
+            font-size: 1.25rem;
             font-weight: bold;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            position: relative;
         }
+
+        button.casillero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+        }
+
+        button.casillero:hover::before {
+            transform: scale(1.5);
+        }
+
+        .seccionInferior {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--card);
+            width: 100%;
+            padding: 1rem 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* Status colors for lockers */
+        .disponible {
+            background-color: var(--success);
+        }
+
+        .ocupado {
+            background-color: var(--occupied);
+        }
+
+        .pendiente {
+            background-color: var(--pending);
+        }
+
+        .averiado {
+            background-color: var(--damaged);
+        }
+
+        /* Popup Modal */
         .emergente {
-            display: none; /* Oculto por defecto */
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(3px);
             justify-content: center;
             align-items: center;
+            z-index: 1000;
         }
+
         .emergente-contenido {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            animation: modalFade 0.3s ease;
         }
-        .Disponibilidad {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        .emergente-contenido h2 {
+            color: var(--primary);
+            margin-top: 0;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 0.5rem;
+        }
+
+        .Disponibilidad,
         .Dimensiones {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            padding: 10px;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--primary-light);
         }
+
+        .Disponibilidad h3,
+        .Dimensiones h3 {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        #txtDisponibilidad,
+        #textoDimensiones {
+            font-weight: 500;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
         select {
             margin-left: 10px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            height: 50%;
-            width: 100%;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--primary-light);
+            width: auto;
+            font-family: inherit;
+            color: var(--text-dark);
+            background-color: var(--background);
+            cursor: pointer;
+            transition: var(--transition);
         }
+
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px var(--primary-light);
+        }
+
+        .disponibilidadSelect {
+            width: auto;
+            min-width: 120px;
+        }
+
+        .botonSelect {
+            margin-left: 10px;
+            background-color: var(--primary);
+            color: var(--text-light);
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .botonSelect:hover {
+            background-color: var(--primary-dark);
+        }
+
         .botones {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10px;
-            gap: 10px;
+            margin-top: 1.5rem;
+            gap: 1rem;
         }
-        .disponibilidadSelect {
-            width: 100%;
-        }
-        .botonSelect {
-            margin-left: 10px;
-            width: 100%;
-        }
-        .boton-home {
-            background-color: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 12px 24px;
-            font-size: 18px;
+
+        .botones button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 500;
             cursor: pointer;
-            margin-top: 40px;
+            transition: var(--transition);
+            border: none;
         }
-        .barra-bloques {
+
+        .botones button:first-child {
+            background-color: var(--accent);
+            color: var(--text-light);
+        }
+
+        .botones button:first-child:hover {
+            background-color: #e91e63;
+        }
+
+        .botones button:last-child {
+            background-color: var(--text-secondary);
+            color: var(--text-light);
+        }
+
+        .botones button:last-child:hover {
+            background-color: #616161;
+        }
+
+        /* Legend for locker status */
+        .locker-legend {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 30px;
-            margin-top: 10px;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: var(--card);
+            border-radius: 8px;
+            box-shadow: var(--shadow);
             width: 100%;
+            max-width: 800px;
+            justify-content: center;
         }
-        .boton-bloque {
-            background-color: #1976d2;
-            color: white;
-            border: none;
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legend-color {
+            width: 1rem;
+            height: 1rem;
             border-radius: 4px;
-            padding: 2px 10px;
-            font-size: 14px;
-            cursor: pointer;
-            min-width: 28px;
-            min-height: 28px;
-            width: 28px;
-            height: 28px;
-            line-height: 1;
-            transition: background 0.2s;
-            box-sizing: border-box;
         }
-        .boton-bloque:hover {
-            background-color: #0d47a1;
+
+        .legend-disponible {
+            background-color: var(--success);
+        }
+
+        .legend-ocupado {
+            background-color: var(--occupied);
+        }
+
+        .legend-pendiente {
+            background-color: var(--pending);
+        }
+
+        .legend-averiado {
+            background-color: var(--damaged);
+        }
+
+        /* Spinner for loading state */
+        .spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .dashboard {
+                gap: 0.5rem;
+            }
+
+            .celda {
+                width: 4rem;
+                height: 4rem;
+            }
+
+            .Disponibilidad,
+            .Dimensiones {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .emergente-contenido {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .celda {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+
+            button.casillero {
+                font-size: 1rem;
+            }
+
+            .barra-bloques {
+                flex-wrap: wrap;
+            }
+
+            .Titulo h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -183,33 +500,15 @@
 <div class="container">
     <div class="Titulo">
         <h1>Bloque Casilleros N°:</h1>
-        <h1 id="numeroBloque">1</h1>
+        <h1 id="numeroBloque"><%= bloqueCasillero.getId() %></h1>
     </div>
 
-    <div class="bloque">
-        <div class="dashboard">
-            <%
-                if (casilleros != null && !casilleros.isEmpty()) {
-                    for (Casillero r : casilleros) {
-            %>
-            <div class="celda">
-                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
-                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
-                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
-                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
-            </div>
-            <%
-                    }
-                }
-                // Si no hay casilleros, no se muestra nada
-            %>
-        </div>
-        <div class="seccionInferior">
-            <div class="botones">
-                <h1></h1>
-            </div>
-        </div>
+    <div style="text-align: center; width: 20%;">
+        <form action="home.jsp" method="get">
+            <button type="submit" class="boton-home">Volver a Home</button>
+        </form>
     </div>
+
     <!-- Barra de navegación de bloques -->
     <div class="barra-bloques">
         <form action="CasilleroServlet" method="get" style="display: inline;">
@@ -234,19 +533,75 @@
         </form>
     </div>
 
-    <div style="text-align: center; width: 20%;">
-        <form action="home.jsp" method="get">
-            <button type="submit" class="boton-home">Volver a Home</button>
-        </form>
+    <!-- Leyenda de estados de casilleros -->
+    <div class="locker-legend">
+        <div class="legend-item">
+            <div class="legend-color legend-disponible"></div>
+            <span>Disponible</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-ocupado"></div>
+            <span>Ocupado</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-pendiente"></div>
+            <span>Pendiente</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color legend-averiado"></div>
+            <span>Averiado</span>
+        </div>
+    </div>
+
+    <div class="bloque">
+        <div class="dashboard">
+            <%
+                if (casilleros != null && !casilleros.isEmpty()) {
+                    for (Casillero r : casilleros) {
+                        String estadoClass = "";
+                        switch(r.getEstado()) {
+                            case "Disponible":
+                                estadoClass = "disponible";
+                                break;
+                            case "Ocupado":
+                                estadoClass = "ocupado";
+                                break;
+                            case "Pendiente":
+                                estadoClass = "pendiente";
+                                break;
+                            case "Averiado":
+                                estadoClass = "averiado";
+                                break;
+                            default:
+                                estadoClass = "disponible";
+                        }
+            %>
+            <div class="celda <%= estadoClass %>">
+                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>, '<%= r.getEstado() %>')"><%= r.getNumero()%></button>
+                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
+                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
+                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
+            </div>
+            <%
+                    }
+                }
+                // Si no hay casilleros, no se muestra nada
+            %>
+        </div>
+        <div class="seccionInferior">
+            <div class="botones">
+                <h1></h1>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Contenedor vista Emergente -->
 <div id="miEmergente" class="emergente">
     <div class="emergente-contenido">
-        <h2>Casillero 1</h2>
+        <h2 id="modalTitle">Casillero</h2>
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
-                <form action="CasilleroServlet" method="post" style="<%=(session.getAttribute("rolUsuario").equals("Estudiante") ? "display:none;" : "")%>">
+            <form action="CasilleroServlet" method="post" style="<%=(session.getAttribute("rolUsuario").equals("Estudiante") ? "display:none;" : "")%>">
                 <input type="hidden" id="idCasillero" name="idCasillero">
                 <select class="disponibilidadSelect" id="disponibilidadSelect" name="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
@@ -255,7 +610,7 @@
                     <option value="Averiado">Averiado</option>
                 </select>
                 <button class="botonSelect">Actualizar</button>
-                </form>
+            </form>
             <p id="txtDisponibilidad" style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>"></p>
 
         </div>
@@ -268,40 +623,75 @@
             <button onclick="cerrarEmergente()">Cerrar</button>
         </div>
     </div>
-    </div>
-
+</div>
 <!-- Codigo JavaScript para controlar las funciones de la pestaña emergente -->
 <script>
-    function mostrarEmergente(numero) {
-        document.getElementById("miEmergente").style.display = "flex";
+    // Variable para determinar si el usuario es estudiante
+    const isStudentRole = <%=!session.getAttribute("rolUsuario").equals("Administrador")%>;
+
+    // Resaltar el botón del bloque actual
+    document.addEventListener("DOMContentLoaded", function() {
+        const blockNumber = document.getElementById("numeroBloque").textContent.trim();
+        const blockButtons = document.querySelectorAll(".boton-bloque");
+
+        blockButtons.forEach(button => {
+            if (button.textContent.trim() === blockNumber) {
+                button.style.backgroundColor = "var(--primary-dark)";
+                button.style.color = "var(--text-light)";
+                button.style.fontWeight = "bold";
+            }
+        });
+    });
+
+    function mostrarEmergente(numero, estado) {
+        const modal = document.getElementById("miEmergente");
+        const modalTitle = document.querySelector(".emergente-contenido h2");
+
+        // Actualizar título con número de casillero
+        modalTitle.textContent = `Casillero ${numero}`;
+
+        // Obtener datos del casillero
         document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
-
         const disponibilidad = document.getElementById("Disponibilidad"+numero).innerText;
-
         document.getElementById("disponibilidadSelect").value = disponibilidad;
         document.getElementById("txtDisponibilidad").innerText = disponibilidad;
         document.getElementById("idCasillero").value = document.getElementById("ID"+numero).innerText;
 
-        // Mostrar o no por disponibilidad
+        // Aplicar clase de estado al título
+        modalTitle.className = "";
+        modalTitle.classList.add(disponibilidad.toLowerCase());
+
+        // Mostrar o no botón de reservar según disponibilidad
         const btnReservar = document.querySelector(".botones button:first-child");
-        if (disponibilidad === "Disponible" && <%=!session.getAttribute("rolUsuario").equals("Administrador")%>) {
+        if (disponibilidad === "Disponible" && isStudentRole) {
             btnReservar.style.display = "inline-block";
         } else {
             btnReservar.style.display = "none";
         }
+
+        // Mostrar modal con animación
+        modal.style.display = "flex";
     }
+
     function cerrarEmergente() {
         document.getElementById("miEmergente").style.display = "none";
     }
+
     function reservarCasillero() {
         // Id del casillero a reservar
-        let casilleroId = document.getElementById("idCasillero").value;
+        const casilleroId = document.getElementById("idCasillero").value;
+
+        // Añadir feedback visual antes de redireccionar
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.innerHTML = '<span class="spinner"></span> Procesando...';
+        btn.disabled = true;
 
         // Redireccionar a la página de reserva con el ID del casillero
-        window.location.href = "reserva.jsp?casilleroId=" + casilleroId;
+        setTimeout(function() {
+            window.location.href = "reserva.jsp?casilleroId=" + casilleroId;
+        }, 500);
     }
 </script>
 </body>
 </html>
-
-
