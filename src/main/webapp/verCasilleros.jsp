@@ -192,6 +192,7 @@
             <p id="textoDimensiones"></p>
         </div>
         <div class="botones">
+            <button onclick="reservarCasillero()" style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>">Reservar</button>
             <button onclick="cerrarEmergente()">Cerrar</button>
         </div>
     </div>
@@ -207,6 +208,13 @@
     }
     function cerrarEmergente() {
         document.getElementById("miEmergente").style.display = "none";
+    }
+    function reservarCasillero() {
+        // Id del casillero a reservar
+        let casilleroId = document.getElementById("idCasillero").value;
+
+        // Redireccionar a la página de reserva con el ID del casillero
+        window.location.href = "reserva.jsp?casilleroId=" + casilleroId;
     }
 </script>
 </body>
