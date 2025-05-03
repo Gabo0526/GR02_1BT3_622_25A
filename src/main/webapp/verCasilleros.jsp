@@ -186,12 +186,30 @@
         <h1 id="numeroBloque">1</h1>
     </div>
 
-    <div style="text-align: center; width: 20%;">
-        <form action="home.jsp" method="get">
-            <button type="submit" class="boton-home">Volver a Home</button>
-        </form>
+    <div class="bloque">
+        <div class="dashboard">
+            <%
+                if (casilleros != null && !casilleros.isEmpty()) {
+                    for (Casillero r : casilleros) {
+            %>
+            <div class="celda">
+                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
+                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
+                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
+                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
+            </div>
+            <%
+                    }
+                }
+                // Si no hay casilleros, no se muestra nada
+            %>
+        </div>
+        <div class="seccionInferior">
+            <div class="botones">
+                <h1></h1>
+            </div>
+        </div>
     </div>
-
     <!-- Barra de navegación de bloques -->
     <div class="barra-bloques">
         <form action="CasilleroServlet" method="get" style="display: inline;">
@@ -216,29 +234,10 @@
         </form>
     </div>
 
-    <div class="bloque">
-        <div class="dashboard">
-            <%
-                if (casilleros != null && !casilleros.isEmpty()) {
-                    for (Casillero r : casilleros) {
-            %>
-            <div class="celda">
-                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
-                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
-                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
-                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
-            </div>
-            <%
-                    }
-                }
-                // Si no hay casilleros, no se muestra nada
-            %>
-        </div>
-        <div class="seccionInferior">
-            <div class="botones">
-                <h1></h1>
-            </div>
-        </div>
+    <div style="text-align: center; width: 20%;">
+        <form action="home.jsp" method="get">
+            <button type="submit" class="boton-home">Volver a Home</button>
+        </form>
     </div>
 </div>
 <!-- Contenedor vista Emergente -->
@@ -269,7 +268,8 @@
             <button onclick="cerrarEmergente()">Cerrar</button>
         </div>
     </div>
-</div>
+    </div>
+
 <!-- Codigo JavaScript para controlar las funciones de la pestaña emergente -->
 <script>
     function mostrarEmergente(numero) {
