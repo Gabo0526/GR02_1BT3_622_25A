@@ -6,7 +6,8 @@ import org.hibernate.annotations.DynamicInsert;
 @Entity
 @Table(name = "Bloque_Casilleros", schema = "railway")
 @DynamicInsert
-@NamedQuery(name = "BloqueCasillero.findUltima", query = "SELECT b FROM BloqueCasillero b WHERE b.id = (SELECT MAX(b2.id) FROM BloqueCasillero b2)")
+@NamedQuery(name = "BloqueCasillero.findLast", query = "SELECT b FROM BloqueCasillero b WHERE b.id = (SELECT MAX(b2.id) FROM BloqueCasillero b2)")
+@NamedQuery(name = "BloqueCasillero.countAll", query = "SELECT COUNT(b) FROM BloqueCasillero b")
 public class BloqueCasillero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

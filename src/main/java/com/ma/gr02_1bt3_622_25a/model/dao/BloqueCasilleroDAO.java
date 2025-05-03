@@ -1,13 +1,9 @@
 package com.ma.gr02_1bt3_622_25a.model.dao;
 
 import com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero;
-import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
-import com.ma.gr02_1bt3_622_25a.model.entity.UsuarioRol;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
-
-import java.util.List;
 
 public class BloqueCasilleroDAO extends GenericDAO<BloqueCasillero> {
     public BloqueCasilleroDAO() {
@@ -16,7 +12,7 @@ public class BloqueCasilleroDAO extends GenericDAO<BloqueCasillero> {
 
     public BloqueCasillero obtenerUltimo() {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<BloqueCasillero> query = em.createNamedQuery("BloqueCasillero.findUltima", BloqueCasillero.class);
+            TypedQuery<BloqueCasillero> query = em.createNamedQuery("BloqueCasillero.findLast", BloqueCasillero.class);
 
             BloqueCasillero bloqueCasillero;
             try {
@@ -26,6 +22,18 @@ public class BloqueCasilleroDAO extends GenericDAO<BloqueCasillero> {
             }
 
             return bloqueCasillero;
+        }
+    }
+
+    public int contarBloques() {
+        try (EntityManager em = emf.createEntityManager()) {
+            try {
+                TypedQuery<Long> query = em.createNamedQuery("BloqueCasillero.countAll", Long.class);
+                Long resultado = query.getSingleResult();
+                return resultado.intValue();
+            } catch (NoResultException e) {
+                return 0; // Si no hay bloques, el conteo es 0
+            }
         }
     }
 }

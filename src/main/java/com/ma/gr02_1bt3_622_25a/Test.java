@@ -37,11 +37,7 @@ public class Test {
 //        }
 
         BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
-        BloqueCasillero bloqueCasillero = new BloqueCasillero();
-
-        bloqueCasillero.setNroFilas(3);
-        bloqueCasillero.setNroColumnas(2);
-
-        bloqueCasilleroDAO.save(bloqueCasillero);
+        int hola = bloqueCasilleroDAO.contarBloques();
+        System.out.println(hola);
     }
 }
