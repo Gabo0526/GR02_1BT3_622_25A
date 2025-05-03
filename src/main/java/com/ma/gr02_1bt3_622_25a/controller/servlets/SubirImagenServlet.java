@@ -10,37 +10,53 @@ import jakarta.servlet.http.Part;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 @WebServlet("/subirImagen")
 @MultipartConfig
 public class SubirImagenServlet extends HttpServlet {
-
-    // Ruta dentro de webapp (ej: src/main/webapp/imagenes)
-    private static final String RUTA_RELATIVA = "D:/AEISResources/images/";
+    private static final String RUTA_ABSOLUTA = "C:/AEISResources/images/";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Obtener archivo
         Part archivo = request.getPart("imagen");
-        String nombreArchivo = archivo.getSubmittedFileName();
 
-        // Ruta absoluta dentro del servidor (carpeta webapp/imagenes)
-        String rutaAbsoluta = getServletContext().getRealPath(RUTA_RELATIVA);
-        File carpeta = new File(rutaAbsoluta);
-        if (!carpeta.exists()) {
-            carpeta.mkdirs();  // Crear la carpeta si no existe
+        if (archivo == null || archivo.getSize() == 0) {
+            response.getWriter().println("No se ha enviado ningun archivo.");
+            return;
         }
 
-        // Guardar archivo
-        archivo.write(rutaAbsoluta + File.separator + nombreArchivo);
+        if (!archivo.getContentType().startsWith("image/")) {
+            response.getWriter().println("Solo se permiten archivos de imagen.");
+            return;
+        }
 
-        System.out.println("Ruta absoluta: " + rutaAbsoluta);
+        // Obtener nombre original y extraer la extensión
+        String nombreOriginal = archivo.getSubmittedFileName();
+        String extension = obtenerExtension(nombreOriginal);
 
+        // Generar nombre único con UUID
+        String nombreArchivoUnico = UUID.randomUUID() + extension;
 
-        response.getWriter().println("Imagen subida con éxito: " + nombreArchivo);
+        // Crear carpeta si no existe
+        File carpeta = new File(RUTA_ABSOLUTA);
+        if (!carpeta.exists()) {
+            carpeta.mkdirs();
+        }
+
+        // Guardar archivo con nombre único
+        File destino = new File(carpeta, nombreArchivoUnico);
+        archivo.write(destino.getAbsolutePath());
+
+        System.out.println("Archivo guardado en: " + destino.getAbsolutePath());
+        response.getWriter().println("Imagen subida con exito: " + nombreArchivoUnico);
+    }
+
+    // Metodo auxiliar para obtener la extensión de un archivo
+    private String obtenerExtension(String nombreArchivo) {
+        int punto = nombreArchivo.lastIndexOf(".");
+        return (punto >= 0) ? nombreArchivo.substring(punto) : "";
     }
 }
-
-
