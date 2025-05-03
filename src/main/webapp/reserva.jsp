@@ -120,7 +120,7 @@
     </div>
     <% } %>
 
-    <form action="procesarReserva.jsp" method="post" enctype="multipart/form-data" id="reservaForm">
+    <form action="subirImagen" method="post" enctype="multipart/form-data" id="reservaForm">
         <div class="section">
             <div class="section-title">Información del Contrato</div>
             <div class="contract-box">
@@ -138,7 +138,7 @@
         <div class="section">
             <div class="section-title">Subir Comprobante</div>
             <div class="upload-section">
-                <input type="file" id="comprobante" name="comprobante" accept=".pdf,.jpg,.jpeg,.png">
+                <input type="file" id="comprobante" name="imagen" accept=".pdf,.jpg,.jpeg,.png">
                 <div class="file-info">
                     Formatos aceptados: PDF, JPG, JPEG, PNG (Tamaño máximo: 5MB)
                 </div>
@@ -148,7 +148,7 @@
 
         <div class="button-group">
             <button type="button" class="btn btn-cancel" onclick="cancelarReserva()">Cancelar</button>
-            <button type="submit" class="btn btn-reserve" id="btnReservar" disabled>Reservar</button>
+                <button type="submit" class="btn btn-reserve" id="btnReservar" value="Subir Imagen" disabled>Reservar</button>
         </div>
     </form>
 </div>
