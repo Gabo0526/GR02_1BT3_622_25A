@@ -135,6 +135,45 @@
             margin-left: 10px;
             width: 100%;
         }
+        .boton-home {
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 40px;
+        }
+        .barra-bloques {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 30px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .boton-bloque {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 10px;
+            font-size: 14px;
+            cursor: pointer;
+            min-width: 28px;
+            min-height: 28px;
+            width: 28px;
+            height: 28px;
+            line-height: 1;
+            transition: background 0.2s;
+            box-sizing: border-box;
+        }
+        .boton-bloque:hover {
+            background-color: #0d47a1;
+        }
     </style>
 </head>
 <body>
@@ -146,10 +185,42 @@
         <h1>Bloque Casilleros N°:</h1>
         <h1 id="numeroBloque">1</h1>
     </div>
+
+    <div style="text-align: center; width: 20%;">
+        <form action="home.jsp" method="get">
+            <button type="submit" class="boton-home">Volver a Home</button>
+        </form>
+    </div>
+
+    <!-- Barra de navegación de bloques -->
+    <div class="barra-bloques">
+        <form action="CasilleroServlet" method="get" style="display: inline;">
+            <input type="hidden" name="idBloque" value="1" />
+            <button type="submit" class="boton-bloque">1</button>
+        </form>
+        <form action="CasilleroServlet" method="get" style="display: inline;">
+            <input type="hidden" name="idBloque" value="2" />
+            <button type="submit" class="boton-bloque">2</button>
+        </form>
+        <form action="CasilleroServlet" method="get" style="display: inline;">
+            <input type="hidden" name="idBloque" value="3" />
+            <button type="submit" class="boton-bloque">3</button>
+        </form>
+        <form action="CasilleroServlet" method="get" style="display: inline;">
+            <input type="hidden" name="idBloque" value="4" />
+            <button type="submit" class="boton-bloque">4</button>
+        </form>
+        <form action="CasilleroServlet" method="get" style="display: inline;">
+            <input type="hidden" name="idBloque" value="5" />
+            <button type="submit" class="boton-bloque">5</button>
+        </form>
+    </div>
+
     <div class="bloque">
         <div class="dashboard">
             <%
-                for (Casillero r : casilleros) {
+                if (casilleros != null && !casilleros.isEmpty()) {
+                    for (Casillero r : casilleros) {
             %>
             <div class="celda">
                 <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>)"><%= r.getNumero()%></button>
@@ -158,7 +229,9 @@
                 <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
             </div>
             <%
+                    }
                 }
+                // Si no hay casilleros, no se muestra nada
             %>
         </div>
         <div class="seccionInferior">
