@@ -196,21 +196,24 @@
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('form');
         form.addEventListener('submit', function(event) {
-            const inputs = form.querySelectorAll('input[type="number"]');
-            let isValid = true;
-
-            inputs.forEach(input => {
-                if (input.value <= 0) {
-                    alert('Todos los valores deben ser mayores que cero.');
-                    isValid = false;
-                }
-            });
-
-            if (!isValid) {
+            if (!validarCamposPositivos(form)) {
                 event.preventDefault();
             }
         });
+
+        function validarCamposPositivos(form) {
+            const inputs = form.querySelectorAll('input[type="number"]');
+            for (const input of inputs) {
+                const esNegativo = input.value <= 0;
+                if (esNegativo) {
+                    alert('Todos los valores deben ser mayores que cero.');
+                    return false;
+                }
+            }
+            return true;
+        }
     });
+
 </script>
 </body>
 </html>
