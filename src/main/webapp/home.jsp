@@ -163,7 +163,7 @@
 
 <div class="container">
   <h2 class="welcome-message">
-    Bienvenido:
+    Bienvenido/a:
     <%
       String nombreUsuario = (String) session.getAttribute("nombreUsuario");
       if (nombreUsuario != null) {
@@ -198,7 +198,6 @@
     %>
   </div>
 
-
   <%
     if ("Estudiante".equals(rolUsuario)) {
   %>
@@ -223,7 +222,7 @@
   <p>Por favor, inicie sesión para acceder a las funcionalidades.</p>
   <% } %>
 
-  <a href="CAMBIAR_A_SERVLET" class="logout-btn">Cerrar sesión</a>
+  <a href="LogoutServlet" class="logout-btn">Cerrar sesión</a>
 </div>
 
 <div class="footer">
@@ -231,7 +230,7 @@
 </div>
 
 <script>
-  // Pequeña animación para los botones
+  // Pequeña animacion para los botones
   document.addEventListener('DOMContentLoaded', function() {
     const buttons = document.querySelectorAll('.chalk-button');
     buttons.forEach(button => {
