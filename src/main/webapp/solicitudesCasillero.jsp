@@ -218,7 +218,6 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <h2 class="page-title">Solicitudes de Casilleros</h2>
 
@@ -234,69 +233,87 @@
         </form>
     </div>
 
-    <%List<AlquilerCasillero> solicitudes = (List<AlquilerCasillero>) request.getAttribute("alquilerCasilleros");%>
-    <c:if test="${not empty solicitudes}">
-        <table class="solicitudes-list">
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Estudiante</th>
-                <th>Casillero</th>
-                <th>Fecha Solicitud</th>
-                <th>Estado</th>
-                <th>Acciones</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach var="solicitud" items="${alquilerCasilleros}">
-                <tr>
-                    <td>${solicitud.getId}</td>
-                    <td>${solicitud.getIdUsuario().getId()}</td>
-                    <td>${solicitud.getIdCasillero().getId()}</td>
-                    <td>${solicitud.getFechaInicio}</td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${solicitud.getEstadoAlquiler == 'PENDIENTE'}">
-                                <span class="badge badge-pendiente">Pendiente</span>
-                            </c:when>
-                            <c:when test="${solicitud.getEstadoAlquiler == 'APROBADA'}">
-                                <span class="badge badge-aprobado">Aprobada</span>
-                            </c:when>
-                            <c:when test="${solicitud.getEstadoAlquiler == 'RECHAZADA'}">
-                                <span class="badge badge-rechazado">Rechazada</span>
-                            </c:when>
-                            <c:when test="${solicitud.getEstadoAlquiler == 'VENCIDO'}">
-                                <span class="badge badge-rechazado">Vencido</span>
-                            </c:when>
-                        </c:choose>
-                    </td>
-                    <td>
-                        <c:if test="${solicitud.getEstadoAlquiler == 'PENDIENTE'}">
-                            <div class="accion-buttons">
-                                <form action="SvSolicitudes" method="post">
-                                    <input type="hidden" name="accion" value="aprobar">
-                                    <input type="hidden" name="idSolicitud" value="${solicitud.getId}">
-                                    <button type="submit" class="aprobar-btn">Aprobar</button>
-                                </form>
-                                <form action="SvSolicitudes" method="post">
-                                    <input type="hidden" name="accion" value="rechazar">
-                                    <input type="hidden" name="idSolicitud" value="${solicitud.getId}">
-                                    <button type="submit" class="rechazar-btn">Rechazar</button>
-                                </form>
-                            </div>
-                        </c:if>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
-        </table>
-    </c:if>
-
-    <c:if test="${empty solicitudes}">
-        <div class="no-solicitudes">
-            <p>No hay solicitudes de casilleros disponibles.</p>
-        </div>
-    </c:if>
+    <%
+        List<AlquilerCasillero> alquilerCasilleros = (List<AlquilerCasillero>) request.getAttribute("alquilerCasilleros");
+        if (alquilerCasilleros != null && !alquilerCasilleros.isEmpty()) {
+    %>
+    <table class="solicitudes-list">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Estudiante</th>
+            <th>Casillero</th>
+            <th>Fecha Solicitud</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            for (AlquilerCasillero solicitud : alquilerCasilleros) {
+        %>
+        <tr>
+            <td><%= solicitud.getId() %></td>
+            <td><%= solicitud.getIdUsuario().getCedula() %></td>
+            <td><%= solicitud.getIdCasillero().getId() %></td>
+            <td><%= solicitud.getFechaInicio() %></td>
+            <td>
+                <%
+                    String estado = solicitud.getEstadoAlquiler();
+                    if ("Pendiente".equals(estado)) {
+                %>
+                <span class="badge badge-pendiente">Pendiente</span>
+                <%
+                } else if ("Activo".equals(estado)) {
+                %>
+                <span class="badge badge-aprobado">Aprobada</span>
+                <%
+                } else if ("Rechazado".equals(estado)) {
+                %>
+                <span class="badge badge-rechazado">Rechazada</span>
+                <%
+                } else if ("Vencido".equals(estado)) {
+                %>
+                <span class="badge badge-rechazado">Vencido</span>
+                <%
+                    }
+                %>
+            </td>
+            <td>
+                <%
+                    if ("Pendiente".equals(solicitud.getEstadoAlquiler())) {
+                %>
+                <div class="accion-buttons">
+                    <form action="SvSolicitudes" method="post">
+                        <input type="hidden" name="accion" value="aprobar">
+                        <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
+                        <button type="submit" class="aprobar-btn">Aprobar</button>
+                    </form>
+                    <form action="SvSolicitudes" method="post">
+                        <input type="hidden" name="accion" value="rechazar">
+                        <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
+                        <button type="submit" class="rechazar-btn">Rechazar</button>
+                    </form>
+                </div>
+                <%
+                    }
+                %>
+            </td>
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+    <%
+    } else {
+    %>
+    <div class="no-solicitudes">
+        <p>No hay solicitudes de casilleros disponibles.</p>
+    </div>
+    <%
+        }
+    %>
 
     <a href="home.jsp" class="back-button">Volver al Inicio</a>
 
