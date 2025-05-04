@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
+    <title>Página de Login</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -17,7 +17,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .card {
             background-color: white;
             padding: 20px;
@@ -78,14 +77,13 @@
             <option value="Estudiante">Estudiante</option>
             <option value="Administrador">Administrador</option>
         </select>
-        <input type="email" name="email" placeholder="Email" />
-        <input type="password" name="password" placeholder="Password" />
-        <button type="submit">Login</button>
+        <input type="email" name="email" placeholder="Correo" />
+        <input type="password" name="password" placeholder="Clave" />
+        <button type="submit">Ingresar al sistema</button>
         <p style="text-align: center; margin-top: 20px">
-            Aun no posees una cuenta? <a href="register.jsp">Registrar</a>
+            ¿Aún no posees una cuenta? <a href="register.jsp">Registrarse</a>
         </p>
     </form>
 </div>
 </body>
 </html>
-
