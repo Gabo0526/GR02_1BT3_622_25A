@@ -19,12 +19,22 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "SolicitudServlet", urlPatterns = {"/SolicitudServlet"})
 public class SolicitudServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
+        List<AlquilerCasillero> solicitudes = alquilerCasilleroDAO.findAll();
+
+        HttpSession session = request.getSession();
+        request.setAttribute("alquilerCasilleros", solicitudes);
+        session.setAttribute("alquilerCasilleros", solicitudes);
+
+        request.getRequestDispatcher("solicitudesCasillero.jsp").forward(request, response);
 
     }
 

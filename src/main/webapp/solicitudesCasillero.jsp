@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.AlquilerCasillero" %><%--
   Created by IntelliJ IDEA.
   User: DVC
   Date: 27/4/2025
@@ -233,6 +234,7 @@
         </form>
     </div>
 
+    <%List<AlquilerCasillero> solicitudes = (List<AlquilerCasillero>) request.getAttribute("alquilerCasilleros");%>
     <c:if test="${not empty solicitudes}">
         <table class="solicitudes-list">
             <thead>
@@ -246,36 +248,39 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="solicitud" items="${solicitudes}">
+            <c:forEach var="solicitud" items="${alquilerCasilleros}">
                 <tr>
-                    <td>${solicitud.id}</td>
-                    <td>${solicitud.nombreEstudiante}</td>
-                    <td>${solicitud.idCasillero}</td>
-                    <td>${solicitud.fechaSolicitud}</td>
+                    <td>${solicitud.getId}</td>
+                    <td>${solicitud.getIdUsuario().getId()}</td>
+                    <td>${solicitud.getIdCasillero().getId()}</td>
+                    <td>${solicitud.getFechaInicio}</td>
                     <td>
                         <c:choose>
-                            <c:when test="${solicitud.estado == 'PENDIENTE'}">
+                            <c:when test="${solicitud.getEstadoAlquiler == 'PENDIENTE'}">
                                 <span class="badge badge-pendiente">Pendiente</span>
                             </c:when>
-                            <c:when test="${solicitud.estado == 'APROBADA'}">
+                            <c:when test="${solicitud.getEstadoAlquiler == 'APROBADA'}">
                                 <span class="badge badge-aprobado">Aprobada</span>
                             </c:when>
-                            <c:when test="${solicitud.estado == 'RECHAZADA'}">
+                            <c:when test="${solicitud.getEstadoAlquiler == 'RECHAZADA'}">
                                 <span class="badge badge-rechazado">Rechazada</span>
+                            </c:when>
+                            <c:when test="${solicitud.getEstadoAlquiler == 'VENCIDO'}">
+                                <span class="badge badge-rechazado">Vencido</span>
                             </c:when>
                         </c:choose>
                     </td>
                     <td>
-                        <c:if test="${solicitud.estado == 'PENDIENTE'}">
+                        <c:if test="${solicitud.getEstadoAlquiler == 'PENDIENTE'}">
                             <div class="accion-buttons">
                                 <form action="SvSolicitudes" method="post">
                                     <input type="hidden" name="accion" value="aprobar">
-                                    <input type="hidden" name="idSolicitud" value="${solicitud.id}">
+                                    <input type="hidden" name="idSolicitud" value="${solicitud.getId}">
                                     <button type="submit" class="aprobar-btn">Aprobar</button>
                                 </form>
                                 <form action="SvSolicitudes" method="post">
                                     <input type="hidden" name="accion" value="rechazar">
-                                    <input type="hidden" name="idSolicitud" value="${solicitud.id}">
+                                    <input type="hidden" name="idSolicitud" value="${solicitud.getId}">
                                     <button type="submit" class="rechazar-btn">Rechazar</button>
                                 </form>
                             </div>
