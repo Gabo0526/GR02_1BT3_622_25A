@@ -10,11 +10,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%BloqueCasillero bloqueCasillero = (BloqueCasillero) session.getAttribute("bloque");%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mirror Casilleros</title>
+    <title>Casilleros AEIS</title>
     <style>
         /* Modern Locker Management System Stylesheet */
         :root {
@@ -505,7 +505,7 @@
 
     <div style="text-align: center; width: 20%;">
         <form action="home.jsp" method="get">
-            <button type="submit" class="boton-home">Volver a Home</button>
+            <button type="submit" class="boton-home">Volver al inicio</button>
         </form>
     </div>
 
@@ -546,9 +546,9 @@
         <div class="dashboard">
             <%
                 if (casilleros != null && !casilleros.isEmpty()) {
-                    for (Casillero r : casilleros) {
+                    for (Casillero c : casilleros) {
                         String estadoClass = "";
-                        switch(r.getEstado()) {
+                        switch(c.getEstado()) {
                             case "Disponible":
                                 estadoClass = "disponible";
                                 break;
@@ -566,10 +566,10 @@
                         }
             %>
             <div class="celda <%= estadoClass %>">
-                <button class="casillero" onclick="mostrarEmergente(<%= r.getNumero()%>, '<%= r.getEstado() %>')"><%= r.getNumero()%></button>
-                <p id="ID<%= r.getNumero()%>" hidden><%= r.getId()%></p>
-                <p id="Disponibilidad<%= r.getNumero()%>" hidden><%= r.getEstado()%></p>
-                <p id="Dimensiones<%= r.getNumero()%>" hidden><%= r.getAltura() +"x"+r.getAncho()+"x"+r.getProfundidad()%></p>
+                <button class="casillero" onclick="mostrarEmergente(<%= c.getNumero()%>, '<%= c.getEstado() %>')"><%= c.getNumero()%></button>
+                <p id="ID<%= c.getNumero()%>" hidden><%= c.getId()%></p>
+                <p id="Disponibilidad<%= c.getNumero()%>" hidden><%= c.getEstado()%></p>
+                <p id="Dimensiones<%= c.getNumero()%>" hidden><%= c.getAltura() +"x"+c.getAncho()+"x"+c.getProfundidad()%></p>
             </div>
             <%
                     }
@@ -584,6 +584,7 @@
         </div>
     </div>
 </div>
+
 <!-- Contenedor vista Emergente -->
 <div id="miEmergente" class="emergente">
     <div class="emergente-contenido">
@@ -614,6 +615,7 @@
         </div>
     </div>
 </div>
+
 <!-- Codigo JavaScript para controlar las funciones de la pestaña emergente -->
 <script>
     // Variable para determinar si el usuario es estudiante
@@ -680,7 +682,7 @@
 
         // Redireccionar a la página de reserva con el ID del casillero
         setTimeout(function() {
-            window.location.href = "reserva.jsp?casilleroId=" + casilleroId;
+            window.location.href = "lockerReservation.jsp?casilleroId=" + casilleroId;
         }, 500);
     }
 </script>

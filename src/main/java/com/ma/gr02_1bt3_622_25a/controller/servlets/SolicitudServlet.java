@@ -38,7 +38,7 @@ public class SolicitudServlet extends HttpServlet {
         request.setAttribute("alquilerCasilleros", solicitudes);
         session.setAttribute("alquilerCasilleros", solicitudes);
 
-        request.getRequestDispatcher("solicitudesCasillero.jsp").forward(request, response);
+        request.getRequestDispatcher("admin/viewLockerRequests.jsp").forward(request, response);
     }
 
     @Override

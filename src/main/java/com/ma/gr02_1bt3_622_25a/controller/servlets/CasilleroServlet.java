@@ -46,7 +46,7 @@ public class CasilleroServlet extends HttpServlet {
         session.setAttribute("nroBloques", nroBloques);
         request.setAttribute("usuario", session.getAttribute("usuario"));
 
-        request.getRequestDispatcher("verCasilleros.jsp").forward(request, response);
+        request.getRequestDispatcher("viewLockers.jsp").forward(request, response);
     }
 
     @Override
