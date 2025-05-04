@@ -542,6 +542,7 @@
     </div>
 
     <div class="bloque">
+        <h2>Bloque <%= bloqueCasillero.getNombreBloque()%></h2>
         <div class="dashboard">
             <%
                 if (casilleros != null && !casilleros.isEmpty()) {
@@ -587,6 +588,7 @@
 <div id="miEmergente" class="emergente">
     <div class="emergente-contenido">
         <h2 id="modalTitle">Casillero</h2>
+        <h2 id="numeroCasillero"></h2>
         <div class="Disponibilidad">
             <h3>Disponibilidad:</h3>
             <form action="CasilleroServlet" method="post" style="<%=(session.getAttribute("rolUsuario").equals("Estudiante") ? "display:none;" : "")%>">
@@ -639,6 +641,7 @@
         modalTitle.textContent = `Casillero ${numero}`;
 
         // Obtener datos del casillero
+        document.getElementById("numeroCasillero").innerText = numero;
         document.getElementById("textoDimensiones").innerText = document.getElementById("Dimensiones"+numero).innerText;
         const disponibilidad = document.getElementById("Disponibilidad"+numero).innerText;
         document.getElementById("disponibilidadSelect").value = disponibilidad;
