@@ -254,8 +254,8 @@
         %>
         <tr>
             <td><%= solicitud.getId() %></td>
-            <td><%= solicitud.getIdUsuario().getCedula() %></td>
-            <td><%= solicitud.getIdCasillero().getId() %></td>
+            <td><%= solicitud.getIdUsuario().getNombre()+" "+solicitud.getIdUsuario().getApellido() %></td>
+            <td><%= solicitud.getIdCasillero().getNumero() %></td>
             <td><%= solicitud.getFechaInicio() %></td>
             <td>
                 <%
