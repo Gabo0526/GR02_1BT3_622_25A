@@ -242,6 +242,7 @@
         <tr>
             <th>ID</th>
             <th>Estudiante</th>
+            <th>Bloque</th>
             <th>Casillero</th>
             <th>Fecha Solicitud</th>
             <th>Estado</th>
@@ -255,6 +256,7 @@
         <tr>
             <td><%= solicitud.getId() %></td>
             <td><%= solicitud.getIdUsuario().getNombre()+" "+solicitud.getIdUsuario().getApellido() %></td>
+            <td><%= solicitud.getIdCasillero().getIdBloque().getNombreBloque()%></td>
             <td><%= solicitud.getIdCasillero().getNumero() %></td>
             <td><%= solicitud.getFechaInicio() %></td>
             <td>
