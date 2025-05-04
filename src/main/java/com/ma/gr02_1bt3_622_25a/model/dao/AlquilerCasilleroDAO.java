@@ -27,7 +27,7 @@ public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
         try {
             tx.begin();
 
-            Query query = em.createNamedQuery("AlquilerCasillero.update")
+            Query query = em.createNamedQuery("AlquilerCasillero.updateState")
                     .setParameter(1, estado)
                     .setParameter(2, idAlquiler);
 

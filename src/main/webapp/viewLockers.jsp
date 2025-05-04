@@ -682,7 +682,7 @@
 
         // Redireccionar a la página de reserva con el ID del casillero
         setTimeout(function() {
-            window.location.href = "lockerReservation.jsp?casilleroId=" + casilleroId;
+            window.location.href = "student/lockerReservation.jsp?casilleroId=" + casilleroId;
         }, 500);
     }
 </script>

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Usuario", schema = "railway")
-@NamedQuery(name = "Usuario.findUser", query = "SELECT u FROM Usuario u WHERE u.correo = ?1 AND u.clave = ?2")
+@NamedQuery(name = "Usuario.findUserByCredentials", query = "SELECT u FROM Usuario u WHERE u.correo = ?1 AND u.clave = ?2")
 public class Usuario {
     @Id
     @Column(name = "cedula", nullable = false, length = 10)

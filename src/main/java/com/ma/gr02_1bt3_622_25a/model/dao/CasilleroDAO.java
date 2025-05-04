@@ -19,7 +19,7 @@ public class CasilleroDAO extends GenericDAO<Casillero> {
     public List<Casillero> findAll() {
         try (EntityManager em = emf.createEntityManager()) {
             String jpql = "SELECT c FROM Casillero c JOIN fetch c.idBloque";
-            return em.createQuery(jpql, entityClass).getResultList();
+            return em.createQuery(jpql, Casillero.class).getResultList();
         }
     }
 
@@ -57,5 +57,4 @@ public class CasilleroDAO extends GenericDAO<Casillero> {
             em.close();
         }
     }
-
 }

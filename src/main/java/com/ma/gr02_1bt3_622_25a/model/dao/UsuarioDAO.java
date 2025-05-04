@@ -13,7 +13,7 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
 
     public Usuario autenticar(String correo, String clave, String rol) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<Usuario> query = em.createNamedQuery("Usuario.findUser", Usuario.class)
+            TypedQuery<Usuario> query = em.createNamedQuery("Usuario.findUserByCredentials", Usuario.class)
                     .setParameter(1, correo)
                     .setParameter(2, clave);
 
