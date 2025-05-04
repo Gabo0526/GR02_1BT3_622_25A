@@ -30,6 +30,10 @@ public class SolicitudServlet extends HttpServlet {
         AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
         List<AlquilerCasillero> solicitudes = alquilerCasilleroDAO.findAll();
 
+        for (AlquilerCasillero alquilerCasillero : solicitudes) {
+            System.out.println(alquilerCasillero);
+        }
+
         HttpSession session = request.getSession();
         request.setAttribute("alquilerCasilleros", solicitudes);
         session.setAttribute("alquilerCasilleros", solicitudes);
