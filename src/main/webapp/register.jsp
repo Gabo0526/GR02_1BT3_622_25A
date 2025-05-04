@@ -11,7 +11,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register Page</title>
+  <title>Página de registro</title>
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -24,7 +24,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .card {
       background-color: white;
       padding: 20px;
@@ -70,12 +69,12 @@
 <div class="card">
   <h2>Registro</h2>
   <form action="UsuarioServlet" method="post">
-    <input type="text" name="cedula" placeholder="Cedula" />
+    <input type="text" name="cedula" placeholder="Cédula" />
     <input type="text" name="nombre" placeholder="Nombre" />
     <input type="text" name="apellido" placeholder="Apellido" />
-    <input type="text" name="codigoUnico" placeholder="Codigo Unico" />
-    <input type="email" name="email" placeholder="Email" />
-    <input type="password" name="password" placeholder="Password" />
+    <input type="text" name="codigoUnico" placeholder="Código Único" />
+    <input type="email" name="email" placeholder="Correo" />
+    <input type="password" name="password" placeholder="Clave" />
     <select name="facultad">
       <option value="Ciencias">Ciencias</option>
       <option value="Ciencias Administrativas">
@@ -83,16 +82,16 @@
       </option>
       <option value="Civil y Ambiental">Civil y Ambiental</option>
       <option value="Electrica y Electronica">
-        Electrica y Electronica
+        Eléctrica y Electrónica
       </option>
-      <option value="Geologia y Petroleos">Geologia y Petroleos</option>
-      <option value="Mecanica">Mecanica</option>
+      <option value="Geologia y Petroleos">Geología y Petróleos</option>
+      <option value="Mecanica">Mecánica</option>
       <option value="Quimica y Agroindustria">
-        Quimica y Agroindustria
+        Química y Agroindustria
       </option>
       <option value="Sistemas">Sistemas</option>
       <option value="ESFOT">ESFOT</option>
-      <option value="Formacion Basica">Formacion Basica</option>
+      <option value="Formacion Basica">Formación Básica</option>
     </select>
     <button type="submit">Registrarse</button>
   </form>
