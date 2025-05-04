@@ -284,12 +284,12 @@
                     if ("Pendiente".equals(solicitud.getEstadoAlquiler())) {
                 %>
                 <div class="accion-buttons">
-                    <form action="SvSolicitudes" method="post">
+                    <form action="ActualizarSolicitudServlet" method="post">
                         <input type="hidden" name="accion" value="aprobar">
                         <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
                         <button type="submit" class="aprobar-btn">Aprobar</button>
                     </form>
-                    <form action="SvSolicitudes" method="post">
+                    <form action="ActualizarSolicitudServlet" method="post">
                         <input type="hidden" name="accion" value="rechazar">
                         <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
                         <button type="submit" class="rechazar-btn">Rechazar</button>

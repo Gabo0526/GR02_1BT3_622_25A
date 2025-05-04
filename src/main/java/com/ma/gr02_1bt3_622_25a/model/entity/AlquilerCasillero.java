@@ -12,6 +12,7 @@ import java.util.Map;
 @Entity
 @Table(name = "Alquiler_Casillero", schema = "railway")
 @DynamicInsert // Permite que se inserte un registro sin tener que especificar todos los campos, para que se genere un valor por defecto
+@NamedQuery(name = "AlquilerCasillero.update", query = "UPDATE AlquilerCasillero a SET a.estadoAlquiler = ?1 WHERE a.id = ?2")
 public class AlquilerCasillero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
