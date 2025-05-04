@@ -21,6 +21,6 @@ public class ActualizarSolicitudServlet extends HttpServlet {
             alquilerCasilleroDAO.actualizar(Integer.parseInt(idSolicitud), "Rechazado");
         }
 
-        response.sendRedirect("solicitudesCasillero.jsp");
+        response.sendRedirect("SolicitudServlet");
     }
 }

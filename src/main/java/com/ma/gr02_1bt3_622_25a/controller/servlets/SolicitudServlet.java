@@ -39,7 +39,6 @@ public class SolicitudServlet extends HttpServlet {
         session.setAttribute("alquilerCasilleros", solicitudes);
 
         request.getRequestDispatcher("solicitudesCasillero.jsp").forward(request, response);
-
     }
 
     @Override
