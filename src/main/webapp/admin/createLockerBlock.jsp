@@ -194,12 +194,12 @@
 <script>
     // Validación del formulario
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            if (!validarCamposPositivos(form)) {
+        document.querySelector('form').addEventListener('submit', function(event) {
+            if (!validarCamposPositivos(document.querySelector('form'))) {
                 event.preventDefault();
             }
         });
+
 
         function validarCamposPositivos(form) {
             const inputs = form.querySelectorAll('input[type="number"]');
