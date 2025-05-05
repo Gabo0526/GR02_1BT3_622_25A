@@ -511,9 +511,8 @@
 
     <!-- Barra de navegación de bloques -->
     <div class="barra-bloques">
-        <%int numBloques = (Integer) session.getAttribute("nroBloques");
-            for (int i = 1; i <= numBloques; i++){
-        %>
+        <%--  Posible refactorización: Inline Tempo   --%>
+        <%for (int i = 1; i <= (Integer) session.getAttribute("nroBloques"); i++){%>
         <form action="CasilleroServlet" method="get" style="display: inline;">
             <input type="hidden" name="idBloque" value="<%=i%>" />
             <button type="submit" class="boton-bloque"><%=i%></button>
@@ -565,11 +564,13 @@
                                 estadoClass = "disponible";
                         }
             %>
+            <%--  Posible refactorización: Extract Variable  --%>
+            <%int numeroCasillero = c.getNumero();%>
             <div class="celda <%= estadoClass %>">
-                <button class="casillero" onclick="mostrarEmergente(<%= c.getNumero()%>, '<%= c.getEstado() %>')"><%= c.getNumero()%></button>
-                <p id="ID<%= c.getNumero()%>" hidden><%= c.getId()%></p>
-                <p id="Disponibilidad<%= c.getNumero()%>" hidden><%= c.getEstado()%></p>
-                <p id="Dimensiones<%= c.getNumero()%>" hidden><%= c.getAltura() +"x"+c.getAncho()+"x"+c.getProfundidad()%></p>
+                <button class="casillero" onclick="mostrarEmergente(<%= numeroCasillero%>, '<%= c.getEstado() %>')"><%= numeroCasillero%></button>
+                <p id="ID<%= numeroCasillero%>" hidden><%= c.getId()%></p>
+                <p id="Disponibilidad<%= numeroCasillero%>" hidden><%= c.getEstado()%></p>
+                <p id="Dimensiones<%= numeroCasillero%>" hidden><%= c.getAltura() +"x"+c.getAncho()+"x"+c.getProfundidad()%></p>
             </div>
             <%
                     }
