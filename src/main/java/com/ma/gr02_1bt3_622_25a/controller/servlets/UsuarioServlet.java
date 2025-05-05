@@ -2,6 +2,7 @@ package com.ma.gr02_1bt3_622_25a.controller.servlets;
 
 import com.ma.gr02_1bt3_622_25a.model.dao.UsuarioDAO;
 import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
+import com.ma.gr02_1bt3_622_25a.service.ServicioUsuario;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,8 +22,9 @@ public class UsuarioServlet extends HttpServlet {
         String clave = request.getParameter("password");
         String rol = request.getParameter("rol");
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.autenticar(correo, clave, rol);
+        ServicioUsuario servicioUsuario = new ServicioUsuario();
+        // Autenticación del usuario con rol
+        Usuario usuario = servicioUsuario.autenticarConRol(correo, clave, rol);
 
         if (usuario != null) {
             // Guardar el usuario en la sesión
@@ -45,17 +47,10 @@ public class UsuarioServlet extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
         String codigoUnico = request.getParameter("codigoUnico");
-
-        if (codigoUnico == null || codigoUnico.isEmpty()) {
-            response.sendRedirect("register.jsp");
-            return;
-        }
-
         String correo = request.getParameter("email");
         String clave = request.getParameter("password");
         String facultad = request.getParameter("facultad");
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = new Usuario();
 
         usuario.setCedula(cedula);
@@ -65,8 +60,8 @@ public class UsuarioServlet extends HttpServlet {
         usuario.setCorreo(correo);
         usuario.setClave(clave);
         usuario.setFacultad(facultad);
-        System.out.println(usuario);
 
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
         usuarioDAO.save(usuario);
 
         response.sendRedirect("index.jsp");

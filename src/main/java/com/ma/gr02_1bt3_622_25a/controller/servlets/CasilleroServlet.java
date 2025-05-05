@@ -4,17 +4,14 @@ import com.ma.gr02_1bt3_622_25a.model.dao.BloqueCasilleroDAO;
 import com.ma.gr02_1bt3_622_25a.model.dao.CasilleroDAO;
 import com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero;
 import com.ma.gr02_1bt3_622_25a.model.entity.Casillero;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
 
 @WebServlet(name = "CasilleroServlet", urlPatterns = {"/CasilleroServlet"})
@@ -28,7 +25,7 @@ public class CasilleroServlet extends HttpServlet {
         BloqueCasillero bloqueCasillero = bloqueCasilleroDAO.find(Integer.parseInt(idBloque));
 
         CasilleroDAO casilleroDAO = new CasilleroDAO();
-        List<Casillero> casilleros = casilleroDAO.obtenerPorBloque(bloqueCasillero);
+        List<Casillero> casilleros = casilleroDAO.obtenerCasillerosPorBloque(bloqueCasillero);
 
         int nroBloques = bloqueCasilleroDAO.contarBloques();
 

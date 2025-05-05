@@ -23,7 +23,7 @@ public class CasilleroDAO extends GenericDAO<Casillero> {
         }
     }
 
-    public List<Casillero> obtenerPorBloque(BloqueCasillero bloque) {
+    public List<Casillero> obtenerCasillerosPorBloque(BloqueCasillero bloque) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Casillero> query = em.createNamedQuery("Casillero.findByBloque", Casillero.class)
                     .setParameter(1, bloque);

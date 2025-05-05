@@ -20,7 +20,7 @@ public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
         }
     }
 
-    public boolean actualizar(int idAlquiler, String estado) {
+    public boolean actualizarAlquilerCasillero(int idAlquiler, String estado) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
 

@@ -11,26 +11,17 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
         super(Usuario.class);
     }
 
-    public Usuario autenticar(String correo, String clave, String rol) {
+    public Usuario autenticarPorCredenciales(String correo, String clave) {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<Usuario> query = em.createNamedQuery("Usuario.findUserByCredentials", Usuario.class)
                     .setParameter(1, correo)
                     .setParameter(2, clave);
 
-            Usuario usuario;
             try {
-                usuario = query.getSingleResult();
+                return query.getSingleResult();
             } catch (NoResultException e) {
                 return null; // No existe el usuario
             }
-
-            UsuarioRolDAO usuarioRolDAO = new UsuarioRolDAO();
-            List<UsuarioRol> rolesUsuario = usuarioRolDAO.obtenerRoles(usuario);
-
-            boolean tieneRol = rolesUsuario.stream()
-                    .anyMatch(usuarioRol -> rol.equals(usuarioRol.getIdRol().getNombreRol()));
-
-            return tieneRol ? usuario : null;
         }
     }
 }

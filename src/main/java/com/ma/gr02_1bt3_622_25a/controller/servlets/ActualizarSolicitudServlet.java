@@ -16,9 +16,9 @@ public class ActualizarSolicitudServlet extends HttpServlet {
         AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
 
         if (accion.equals("aprobar")) {
-            alquilerCasilleroDAO.actualizar(Integer.parseInt(idSolicitud), "Activo");
+            alquilerCasilleroDAO.actualizarAlquilerCasillero(Integer.parseInt(idSolicitud), "Activo");
         } else if (accion.equals("rechazar")) {
-            alquilerCasilleroDAO.actualizar(Integer.parseInt(idSolicitud), "Rechazado");
+            alquilerCasilleroDAO.actualizarAlquilerCasillero(Integer.parseInt(idSolicitud), "Rechazado");
         }
 
         response.sendRedirect("SolicitudServlet");

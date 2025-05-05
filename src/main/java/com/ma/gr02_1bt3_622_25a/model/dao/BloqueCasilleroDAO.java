@@ -10,7 +10,7 @@ public class BloqueCasilleroDAO extends GenericDAO<BloqueCasillero> {
         super(BloqueCasillero.class);
     }
 
-    public BloqueCasillero obtenerUltimo() {
+    public BloqueCasillero obtenerUltimoBloqueAgregado() {
         try (EntityManager em = emf.createEntityManager()) {
             TypedQuery<BloqueCasillero> query = em.createNamedQuery("BloqueCasillero.findLast", BloqueCasillero.class);
 
@@ -18,7 +18,7 @@ public class BloqueCasilleroDAO extends GenericDAO<BloqueCasillero> {
             try {
                 bloqueCasillero = query.getSingleResult();
             } catch (NoResultException e) {
-                return null; // No existe el usuario
+                return null;
             }
 
             return bloqueCasillero;
