@@ -213,7 +213,7 @@
             const bloqueId = urlParams.get('bloqueId') || "1"; // Default to 1 if not present
 
             // Redirect to the servlet to handle the request properly
-            window.location.href = 'CasilleroServlet?idBloque=' + bloqueId;
+            window.location.href = '../CasilleroServlet?idBloque=' + bloqueId;
         }
     }
 
