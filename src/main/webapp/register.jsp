@@ -69,13 +69,13 @@
 <div class="card">
   <h2>Registro</h2>
   <form action="UsuarioServlet" method="post">
-    <input type="text" name="cedula" placeholder="Cédula" />
-    <input type="text" name="nombre" placeholder="Nombre" />
-    <input type="text" name="apellido" placeholder="Apellido" />
-    <input type="text" name="codigoUnico" placeholder="Código Único" />
-    <input type="email" name="email" placeholder="Correo" />
-    <input type="password" name="password" placeholder="Clave" />
-    <select name="facultad">
+    <input type="text" name="cedula" placeholder="Cédula" required />
+    <input type="text" name="nombre" placeholder="Nombre" required />
+    <input type="text" name="apellido" placeholder="Apellido" required />
+    <input type="text" name="codigoUnico" placeholder="Código Único" required />
+    <input type="email" name="email" placeholder="Correo" required />
+    <input type="password" name="password" placeholder="Clave" required />
+    <select name="facultad" required>
       <option value="Ciencias">Ciencias</option>
       <option value="Ciencias Administrativas">
         Ciencias Administrativas

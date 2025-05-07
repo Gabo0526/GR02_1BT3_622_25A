@@ -3,7 +3,6 @@ package com.ma.gr02_1bt3_622_25a.controller.servlets;
 import com.ma.gr02_1bt3_622_25a.model.dao.UsuarioDAO;
 import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
 import com.ma.gr02_1bt3_622_25a.service.ServicioUsuario;
-import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -33,8 +32,8 @@ public class UsuarioServlet extends HttpServlet {
             session.setAttribute("nombreUsuario", usuario.getNombre() + " " + usuario.getApellido());
             session.setAttribute("rolUsuario", rol);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
-            dispatcher.forward(request, response);
+            // Redirigir al JSP con una nueva petición
+            response.sendRedirect("home.jsp");
         } else {
             response.sendRedirect("index.jsp");
         }

@@ -22,27 +22,23 @@ public class CasilleroServlet extends HttpServlet {
         String idBloque = request.getParameter("idBloque");
 
         BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
-        BloqueCasillero bloqueCasillero = bloqueCasilleroDAO.find(Integer.parseInt(idBloque));
-
         CasilleroDAO casilleroDAO = new CasilleroDAO();
+
+        BloqueCasillero bloqueCasillero = bloqueCasilleroDAO.find(Integer.parseInt(idBloque));
         List<Casillero> casilleros = casilleroDAO.obtenerCasillerosPorBloque(bloqueCasillero);
-
         int nroBloques = bloqueCasilleroDAO.contarBloques();
-
-        for (Casillero casillero : casilleros) {
-            System.out.println(casillero);
-        }
-        System.out.println(casilleros.size());
 
         HttpSession session = request.getSession();
         request.setAttribute("casilleros", casilleros);
-        session.setAttribute("casilleros", casilleros);
+        // session.setAttribute("casilleros", casilleros);
         request.setAttribute("bloque", bloqueCasillero);
-        session.setAttribute("bloque", bloqueCasillero);
+        // session.setAttribute("bloque", bloqueCasillero);
         request.setAttribute("nroBloques", nroBloques);
-        session.setAttribute("nroBloques", nroBloques);
-        request.setAttribute("usuario", session.getAttribute("usuario"));
+        // session.setAttribute("nroBloques", nroBloques);
+        // request.setAttribute("usuario", session.getAttribute("usuario"));
 
+        // Parametros de la peticion:
+        // idBloque, casilleros, bloque, nroBloques
         request.getRequestDispatcher("viewLockers.jsp").forward(request, response);
     }
 
@@ -52,14 +48,11 @@ public class CasilleroServlet extends HttpServlet {
         String idCasillero = request.getParameter("idCasillero");
         String estado = request.getParameter("disponibilidadSelect");
 
-        System.out.println(idCasillero);
-
         CasilleroDAO casilleroDAO = new CasilleroDAO();
 
         if (casilleroDAO.actualizarEstadoCasillero(Integer.parseInt(idCasillero), estado)) {
-            request.setAttribute("idBloque", "1");
             // Esto redirige a la misma URL pero con el método GET
-            response.sendRedirect(request.getRequestURI() + "?idBloque=" + request.getAttribute("idBloque"));
+            response.sendRedirect(request.getRequestURI() + "?idBloque=" + request.getParameter("idBloque"));
         } else {
             response.sendRedirect("home.jsp");
         }

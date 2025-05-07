@@ -8,7 +8,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%BloqueCasillero bloqueCasillero = (BloqueCasillero) session.getAttribute("bloque");%>
+<%BloqueCasillero bloqueCasillero = (BloqueCasillero) request.getAttribute("bloque");%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -512,7 +512,7 @@
     <!-- Barra de navegación de bloques -->
     <div class="barra-bloques">
         <%--  Posible refactorización: Inline Tempo   --%>
-        <%for (int i = 1; i <= (Integer) session.getAttribute("nroBloques"); i++){%>
+        <%for (int i = 1; i <= (Integer) request.getAttribute("nroBloques"); i++){%>
         <form action="CasilleroServlet" method="get" style="display: inline;">
             <input type="hidden" name="idBloque" value="<%=i%>" />
             <button type="submit" class="boton-bloque"><%=i%></button>
@@ -595,6 +595,7 @@
             <h3>Disponibilidad:</h3>
             <form action="CasilleroServlet" method="post" style="<%=(session.getAttribute("rolUsuario").equals("Estudiante") ? "display:none;" : "")%>">
                 <input type="hidden" id="idCasillero" name="idCasillero">
+                <input type="hidden" name="idBloque" value="<%= bloqueCasillero.getId() %>">
                 <select class="disponibilidadSelect" id="disponibilidadSelect" name="disponibilidadSelect">
                     <option value="Disponible">Disponible</option>
                     <option value="Ocupado">Ocupado</option>
