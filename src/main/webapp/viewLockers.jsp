@@ -9,6 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%BloqueCasillero bloqueCasillero = (BloqueCasillero) request.getAttribute("bloque");%>
+<%List<Casillero> casilleros = (List<Casillero>) request.getAttribute("casilleros");%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -494,9 +495,6 @@
     </style>
 </head>
 <body>
-<%
-    List<Casillero> casilleros = (List<Casillero>) request.getAttribute("casilleros");
-%>
 <div class="container">
     <div class="Titulo">
         <h1>Bloque Casilleros N°:</h1>
@@ -541,7 +539,7 @@
     </div>
 
     <div class="bloque">
-        <h2>Bloque <%= bloqueCasillero.getNombreBloque()%></h2>
+        <h2 id="nombreBloque">Bloque <%= bloqueCasillero.getNombreBloque()%></h2>
         <div class="dashboard">
             <%
                 if (casilleros != null && !casilleros.isEmpty()) {
@@ -568,6 +566,7 @@
             <%int numeroCasillero = c.getNumero();%>
             <div class="celda <%= estadoClass %>">
                 <button class="casillero" onclick="mostrarEmergente(<%= numeroCasillero%>, '<%= c.getEstado() %>')"><%= numeroCasillero%></button>
+                <%System.out.println(numeroCasillero);%>
                 <p id="ID<%= numeroCasillero%>" hidden><%= c.getId()%></p>
                 <p id="Disponibilidad<%= numeroCasillero%>" hidden><%= c.getEstado()%></p>
                 <p id="Dimensiones<%= numeroCasillero%>" hidden><%= c.getAltura() +"x"+c.getAncho()+"x"+c.getProfundidad()%></p>
@@ -675,6 +674,9 @@
     function reservarCasillero() {
         // Id del casillero a reservar
         const casilleroId = document.getElementById("idCasillero").value;
+        const nombreBloque = document.getElementById("nombreBloque").textContent.trim();
+        const numeroCasillero = document.getElementById("numeroCasillero").textContent.trim();
+        const numeroBloque = document.getElementById("numeroBloque").textContent.trim();
 
         // Añadir feedback visual antes de redireccionar
         const btn = event.target;
@@ -684,7 +686,10 @@
 
         // Redireccionar a la página de reserva con el ID del casillero
         setTimeout(function() {
-            window.location.href = "student/lockerReservation.jsp?casilleroId=" + casilleroId;
+            window.location.href = "student/lockerReservation.jsp?casilleroId=" + casilleroId +
+                "&nombreBloque=" + nombreBloque +
+                "&numeroCasillero=" + numeroCasillero +
+                "&numeroBloque=" + numeroBloque;
         }, 500);
     }
 </script>

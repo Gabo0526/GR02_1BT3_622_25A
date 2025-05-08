@@ -286,12 +286,12 @@
                     if ("Pendiente".equals(solicitud.getEstadoAlquiler())) {
                 %>
                 <div class="accion-buttons">
-                    <form action="ActualizarSolicitudServlet" method="post">
+                    <form action="SolicitudServlet" method="post">
                         <input type="hidden" name="accion" value="aprobar">
                         <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
                         <button type="submit" class="aprobar-btn">Aprobar</button>
                     </form>
-                    <form action="ActualizarSolicitudServlet" method="post">
+                    <form action="SolicitudServlet" method="post">
                         <input type="hidden" name="accion" value="rechazar">
                         <input type="hidden" name="idSolicitud" value="<%= solicitud.getId() %>">
                         <button type="submit" class="rechazar-btn">Rechazar</button>
@@ -317,7 +317,7 @@
         }
     %>
 
-    <a href="${pageContext.request.contextPath}/home.jsp" class="back-button">Volver al inicio</a>
+    <a href="home.jsp" class="back-button">Volver al inicio</a>
 
     <div class="logout">
         <form action="LogoutServlet" method="get">

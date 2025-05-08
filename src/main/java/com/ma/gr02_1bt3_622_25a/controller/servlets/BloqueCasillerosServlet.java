@@ -16,8 +16,7 @@ import java.math.BigDecimal;
 @WebServlet(name = "BloqueCasillerosServlet", urlPatterns = {"/BloqueCasillerosServlet"})
 public class BloqueCasillerosServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
     }
 
     @Override
@@ -31,29 +30,26 @@ public class BloqueCasillerosServlet extends HttpServlet {
         String altura = request.getParameter("altura");
         String nombreBloque = request.getParameter("nombreBloque");
 
+        BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
         BloqueCasillero bloqueCasillero = new BloqueCasillero();
         bloqueCasillero.setNroFilas(Integer.parseInt(nroFilas));
         bloqueCasillero.setNroColumnas(Integer.parseInt(nroColumnas));
         bloqueCasillero.setNombreBloque(nombreBloque);
-
-        BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
         bloqueCasilleroDAO.save(bloqueCasillero);
 
         bloqueCasillero = bloqueCasilleroDAO.obtenerUltimoBloqueAgregado();
 
-        CasilleroDAO casilleroDAO = new CasilleroDAO();
-        crearYGuardarCasilleros(bloqueCasillero, nroFilas, nroColumnas, ancho, profundidad, altura, casilleroDAO);
+        crearYGuardarCasilleros(bloqueCasillero, Integer.parseInt(nroFilas) * Integer.parseInt(nroColumnas), Double.parseDouble(ancho), Double.parseDouble(profundidad), Double.parseDouble(altura));
 
-        request.getRequestDispatcher("home.jsp").forward(request, response);
+        response.sendRedirect("home.jsp");
     }
 
-    private void crearYGuardarCasilleros(BloqueCasillero bloqueCasillero, String nroFilas, String nroColumnas,
-                                         String ancho, String profundidad, String altura, CasilleroDAO casilleroDAO) {
+    private void crearYGuardarCasilleros(BloqueCasillero bloqueCasillero, int totalCasilleros, Double ancho, Double profundidad, Double altura) {
 
-        int totalCasilleros = Integer.parseInt(nroFilas) * Integer.parseInt(nroColumnas);
-        BigDecimal anchoVal = BigDecimal.valueOf(Integer.parseInt(ancho));
-        BigDecimal profundidadVal = BigDecimal.valueOf(Integer.parseInt(profundidad));
-        BigDecimal alturaVal = BigDecimal.valueOf(Integer.parseInt(altura));
+        CasilleroDAO casilleroDAO = new CasilleroDAO();
+        BigDecimal anchoVal = BigDecimal.valueOf(ancho);
+        BigDecimal profundidadVal = BigDecimal.valueOf(profundidad);
+        BigDecimal alturaVal = BigDecimal.valueOf(altura);
 
         for (int i = 0; i < totalCasilleros; i++) {
             Casillero casillero = new Casillero();

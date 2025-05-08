@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Bloque de Casilleros</title>
+    <title>Crear Bloque de Casilleros - Sistema de Gestión</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -146,7 +146,7 @@
 <div class="container">
     <h2 class="page-title">Crear Bloque de Casilleros</h2>
 
-    <form action="BloqueCasillerosServlet" method="post">
+    <form action="../BloqueCasillerosServlet" method="post">
 
         <div class="form-group">
             <label class="form-label">Nombre del bloque:</label>
@@ -163,7 +163,7 @@
             <input type="number" name="nroColumnas" class="form-input" min="1" required>
         </div>
 
-        <div class="section-title">Casillero</div>
+        <div class="section-title">Casilleros</div>
 
         <div class="form-group">
             <label class="form-label">Ancho:</label>

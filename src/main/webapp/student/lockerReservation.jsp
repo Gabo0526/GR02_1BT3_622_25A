@@ -124,10 +124,11 @@
         <!-- Hidden field to store the casillero ID -->
         <input type="hidden" id="casilleroId" name="casilleroId" value="<%= request.getParameter("casilleroId") %>">
         <input type="hidden" id="precioId" name="precio" value="6.5">
+        <input type="hidden" id="numeroBloqueId" name="numeroBloque" value="<%= request.getParameter("numeroBloque") %>">
         <div class="section">
             <div class="section-title">Información del Casillero</div>
             <div class="contract-box">
-                <p>Estás por reservar el casillero número: <strong><%= request.getParameter("casilleroId") %></strong></p>
+                <p>Estás por reservar el casillero número <strong><%= request.getParameter("numeroCasillero") %></strong> del <strong><%= request.getParameter("nombreBloque") %></strong></p>
             </div>
         </div>
 
@@ -210,10 +211,10 @@
         if (confirm('¿Está seguro que desea cancelar la reserva?')) {
             // Get the ID of the bloque from the URL parameter
             const urlParams = new URLSearchParams(window.location.search);
-            const bloqueId = urlParams.get('bloqueId') || "1"; // Default to 1 if not present
+            const numeroBloque = urlParams.get('numeroBloque') || "1"; // Default to 1 if not present
 
             // Redirect to the servlet to handle the request properly
-            window.location.href = '../CasilleroServlet?idBloque=' + bloqueId;
+            window.location.href = '../CasilleroServlet?idBloque=' + numeroBloque;
         }
     }
 

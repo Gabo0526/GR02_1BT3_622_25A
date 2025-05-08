@@ -9,7 +9,6 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +27,7 @@ public class CasilleroServlet extends HttpServlet {
         List<Casillero> casilleros = casilleroDAO.obtenerCasillerosPorBloque(bloqueCasillero);
         int nroBloques = bloqueCasilleroDAO.contarBloques();
 
-        HttpSession session = request.getSession();
+        // HttpSession session = request.getSession();
         request.setAttribute("casilleros", casilleros);
         // session.setAttribute("casilleros", casilleros);
         request.setAttribute("bloque", bloqueCasillero);

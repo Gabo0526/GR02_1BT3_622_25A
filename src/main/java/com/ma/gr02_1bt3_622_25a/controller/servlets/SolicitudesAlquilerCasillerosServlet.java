@@ -23,24 +23,7 @@ public class SolicitudesAlquilerCasillerosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-
-        try {
-            Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-            int idCasillero = Integer.parseInt(request.getParameter("casilleroId"));
-            double costo = Double.parseDouble(request.getParameter("precio"));
-            Part imagen = request.getPart("imagen");
-
-            String rutaComprobante = servicioArchivo.guardarImagen(imagen);
-            servicioAlquiler.registrarSolicitud(usuario, idCasillero, costo, rutaComprobante);
-
-            response.sendRedirect("home.jsp");
-
-        } catch (IllegalArgumentException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en el procesamiento de la solicitud.");
-        }
+        router(request, response, request.getSession().getAttribute("rolUsuario").toString());
     }
 
     @Override
@@ -50,8 +33,44 @@ public class SolicitudesAlquilerCasillerosServlet extends HttpServlet {
         AlquilerCasilleroDAO alquilerDAO = new AlquilerCasilleroDAO();
         List<AlquilerCasillero> solicitudes = alquilerDAO.findAll();
 
-        request.getSession().setAttribute("alquilerCasilleros", solicitudes);
         request.setAttribute("alquilerCasilleros", solicitudes);
         request.getRequestDispatcher("admin/viewLockerRequests.jsp").forward(request, response);
+    }
+
+    private void router(HttpServletRequest request, HttpServletResponse response, String role)
+            throws IOException {
+        if (role.equals("Administrador")) {
+            String idSolicitud = request.getParameter("idSolicitud");
+            String accion = request.getParameter("accion");
+
+            AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
+
+            if (accion.equals("aprobar")) {
+                alquilerCasilleroDAO.actualizarAlquilerCasillero(Integer.parseInt(idSolicitud), "Activo");
+            } else if (accion.equals("rechazar")) {
+                alquilerCasilleroDAO.actualizarAlquilerCasillero(Integer.parseInt(idSolicitud), "Rechazado");
+            }
+
+            response.sendRedirect("SolicitudServlet");
+
+        } else if (role.equals("Estudiante")) {
+            try {
+                Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+                int idCasillero = Integer.parseInt(request.getParameter("casilleroId"));
+                double costo = Double.parseDouble(request.getParameter("precio"));
+                Part imagen = request.getPart("imagen");
+
+                String rutaComprobante = servicioArchivo.guardarImagen(imagen);
+                servicioAlquiler.registrarSolicitud(usuario, idCasillero, costo, rutaComprobante);
+
+                response.sendRedirect("CasilleroServlet?idBloque=" + request.getParameter("numeroBloque"));
+
+            } catch (IllegalArgumentException e) {
+                response.sendError(HttpServletResponse.SC_BAD_REQUEST, e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en el procesamiento de la solicitud.");
+            }
+        }
     }
 }
