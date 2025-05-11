@@ -10,6 +10,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%BloqueCasillero bloqueCasillero = (BloqueCasillero) request.getAttribute("bloque");%>
 <%List<Casillero> casilleros = (List<Casillero>) request.getAttribute("casilleros");%>
+<%
+    String modoOperacion = (String) request.getAttribute("modo");
+    if (modoOperacion == null) {
+        modoOperacion = "reservar"; // Valor por defecto
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -611,7 +617,16 @@
             <p id="textoDimensiones"></p>
         </div>
         <div class="botones">
-            <button onclick="reservarCasillero()" style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>">Reservar</button>
+            <%
+                String textoBoton = modoOperacion.equals("intercambiar") ? "Intercambiar" : "Reservar";
+                String funcionBoton = modoOperacion.equals("intercambiar") ? "intercambiarCasillero()" : "reservarCasillero()";
+            %>
+
+            <button onclick="<%= funcionBoton %>"
+                    style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>">
+                <%= textoBoton %>
+            </button>
+
             <button onclick="cerrarEmergente()">Cerrar</button>
         </div>
     </div>
@@ -690,6 +705,20 @@
                 "&nombreBloque=" + nombreBloque +
                 "&numeroCasillero=" + numeroCasillero +
                 "&numeroBloque=" + numeroBloque;
+        }, 500);
+    }
+
+    function intercambiarCasillero() {
+        const casilleroId = document.getElementById("idCasillero").value;
+
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.innerHTML = '<span class="spinner"></span> Procesando...';
+        btn.disabled = true;
+
+        // Redirigir al servlet para intercambio
+        setTimeout(function () {
+            window.location.href = "IntercambioCasilleroServlet?casilleroId=" + casilleroId;
         }, 500);
     }
 </script>

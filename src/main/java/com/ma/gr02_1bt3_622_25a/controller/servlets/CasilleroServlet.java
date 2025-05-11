@@ -36,6 +36,9 @@ public class CasilleroServlet extends HttpServlet {
         // session.setAttribute("nroBloques", nroBloques);
         // request.setAttribute("usuario", session.getAttribute("usuario"));
 
+        // Para el modo de viewLockers.jsp:
+        // request.setAttribute("modo", "intercambiar");
+
         // Parametros de la peticion:
         // idBloque, casilleros, bloque, nroBloques
         request.getRequestDispatcher("viewLockers.jsp").forward(request, response);
