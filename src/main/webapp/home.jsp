@@ -203,7 +203,7 @@
   %>
   <div class="button-grid">
     <a href="CasilleroServlet?idBloque=1" class="chalk-button active">Ver Casilleros</a>
-    <div class="chalk-button" style="opacity: 0.5;"></div>
+    <a href="MisCasillerosServlet" class="chalk-button active">Ver Mis Casilleros</a>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
     <div class="chalk-button" style="opacity: 0.5;"></div>
