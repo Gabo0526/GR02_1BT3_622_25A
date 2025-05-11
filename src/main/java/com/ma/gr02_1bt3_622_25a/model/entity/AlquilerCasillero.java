@@ -13,6 +13,8 @@ import java.util.Map;
 @Table(name = "Alquiler_Casillero", schema = "railway")
 @DynamicInsert // Permite que se inserte un registro sin tener que especificar todos los campos, para que se genere un valor por defecto
 @NamedQuery(name = "AlquilerCasillero.updateState", query = "UPDATE AlquilerCasillero a SET a.estadoAlquiler = ?1 WHERE a.id = ?2")
+@NamedQuery(name = "AlquilerCasillero.exchangeLocker", query = "UPDATE AlquilerCasillero a SET a.idCasillero = ?1 WHERE a.id = ?2")
+@NamedQuery(name = "AlquilerCasillero.findActiveByUser", query = "SELECT a FROM AlquilerCasillero a JOIN FETCH a.idCasillero JOIN FETCH a.idCasillero.idBloque WHERE a.idUsuario = ?1 AND a.estadoAlquiler = 'Activo'")
 public class AlquilerCasillero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,6 +9,8 @@ import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 public class ServicioAlquilerCasillero {
@@ -28,5 +30,11 @@ public class ServicioAlquilerCasillero {
         alquiler.setFechaVencimiento(vencimiento);
 
         alquilerCasilleroDAO.save(alquiler);
+    }
+
+    public List<AlquilerCasillero> procesarResultadosConsulta(List<AlquilerCasillero> resultados) {
+        return resultados == null
+                ? Collections.emptyList()
+                : resultados;
     }
 }
