@@ -1,11 +1,7 @@
 package com.ma.gr02_1bt3_622_25a.controller.servlets;
 
 import com.ma.gr02_1bt3_622_25a.model.dao.AlquilerCasilleroDAO;
-import com.ma.gr02_1bt3_622_25a.model.dao.BloqueCasilleroDAO;
-import com.ma.gr02_1bt3_622_25a.model.dao.CasilleroDAO;
 import com.ma.gr02_1bt3_622_25a.model.entity.AlquilerCasillero;
-import com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero;
-import com.ma.gr02_1bt3_622_25a.model.entity.Casillero;
 import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
