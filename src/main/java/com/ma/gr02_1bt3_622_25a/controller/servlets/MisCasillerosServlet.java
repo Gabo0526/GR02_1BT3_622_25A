@@ -24,7 +24,7 @@ public class MisCasillerosServlet extends HttpServlet {
         AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
         List<AlquilerCasillero> alquileres = alquilerCasilleroDAO.obtenerAlquileresPorUsuario(usuario);
 
-        request.setAttribute("casilleros", alquileres);
+        request.setAttribute("alquileres", alquileres);
 
         request.getRequestDispatcher("student/viewMyLockers.jsp").forward(request, response);
     }

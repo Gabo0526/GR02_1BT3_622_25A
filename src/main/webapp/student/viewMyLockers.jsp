@@ -7,7 +7,7 @@ Time: 16:51
 To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%List<AlquilerCasillero> casilleros = (List<AlquilerCasillero>) request.getAttribute("casilleros");%>
+<%List<AlquilerCasillero> alquileres = (List<AlquilerCasillero>) request.getAttribute("alquileres");%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -315,24 +315,24 @@ To change this template use File | Settings | File Templates.
     </div>
 
     <div class="card-container">
-        <!-- Cuadrícula de casilleros con valores "quemados" -->
+        <!-- Cuadrícula de alquileres con valores "quemados" -->
         <div class="locker-grid grid-cols-4">
-            <%if (casilleros != null && !casilleros.isEmpty()) {
-                for (AlquilerCasillero c : casilleros) {
-                    int numeroCasillero = c.getIdCasillero().getNumero();%>
+            <%if (alquileres != null && !alquileres.isEmpty()) {
+                for (AlquilerCasillero a : alquileres) {
+                    int numeroCasillero = a.getIdCasillero().getNumero();%>
 
             <!-- Casillero 1 -->
             <div class="locker-card multi-locker">
                 <div class="locker-content">
-                    <h2 class="block-name"><%= c.getIdCasillero().getIdBloque().getNombreBloque() %></h2>
-                    <div class="locker-number">Casillero #<%= c.getIdCasillero().getNumero()%></div>
+                    <h2 class="block-name"><%= a.getIdCasillero().getIdBloque().getNombreBloque() %></h2>
+                    <div class="locker-number">Casillero #<%= a.getIdCasillero().getNumero()%></div>
                     <div class="locker-info">
-                        <span class="info-label">Dimensiones:</span> <%= c.getIdCasillero().getAncho()+ "x"+ c.getIdCasillero().getAltura()+"x"+c.getIdCasillero().getProfundidad()%> cm
+                        <span class="info-label">Dimensiones:</span> <%= a.getIdCasillero().getAncho()+ "x"+ a.getIdCasillero().getAltura()+"x"+a.getIdCasillero().getProfundidad()%> cm
                     </div>
                     <div class="locker-info">
-                        <p id="ID<%= numeroCasillero%>" hidden><%= c.getIdCasillero().getId()%></p>
-                        <p id="ID<%= c.getId()%>" hidden><%= c.getId()%></p>
-                        <span class="info-label">Vencimiento:</span> <%= c.getFechaVencimiento() %>
+                        <p id="ID<%= numeroCasillero%>" hidden><%= a.getIdCasillero().getId()%></p>
+                        <p id="ID<%= a.getId()%>" hidden><%= a.getId()%></p>
+                        <span class="info-label">Vencimiento:</span> <%= a.getFechaVencimiento() %>
                     </div>
                 </div>
                 <div class="button-container">
