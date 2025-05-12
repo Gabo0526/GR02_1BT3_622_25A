@@ -24,5 +24,13 @@ public class ServicioMensajeria {
         request.setAttribute("estado", "rechazado");
         notificacionService.enviarRechazo(alquilerCasillero.getIdUsuario(), motivo);
     }
+    public void enviarEnlaceRecuperacion(HttpServletRequest request) {
+        String token = (String) request.getAttribute("token");
+        Usuario usuario = (Usuario) request.getAttribute("usuario");
+
+        request.setAttribute("estado", "enlaceRecuperacion");
+
+        notificacionService.enviarEnlaceRecuperacion(usuario, token);
+    }
 
 }

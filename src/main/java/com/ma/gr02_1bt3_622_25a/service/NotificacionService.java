@@ -6,4 +6,5 @@ import com.ma.gr02_1bt3_622_25a.model.entity.Usuario;
 public interface NotificacionService {
     void enviarAprobacion(Usuario usuario, Casillero casillero);
     void enviarRechazo(Usuario usuario, String motivo);
+    void enviarEnlaceRecuperacion(Usuario usuario, String token);
 }

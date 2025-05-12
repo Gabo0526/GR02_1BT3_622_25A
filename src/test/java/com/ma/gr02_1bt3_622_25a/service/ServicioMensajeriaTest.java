@@ -52,4 +52,26 @@ class ServicioMensajeriaTest {
         Mockito.verify(notificacionService).enviarRechazo(alquilerCasillero.getIdUsuario(), motivo);
     }
 
+    @Test
+    void givenRecoveryToken_whenSendTryEnlace_thenCallEmailService() {
+        // Arrange
+        NotificacionService notificacionService = Mockito.mock(NotificacionService.class);
+        ServicioMensajeria servicio = new ServicioMensajeria(notificacionService);
+
+        HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
+
+        Usuario usuario = new Usuario();
+
+        String token = "<PASSWORD>";
+
+        Mockito.when(request.getAttribute("token")).thenReturn(token);
+        Mockito.when(request.getAttribute("usuario")).thenReturn(usuario);
+
+        // Act
+        servicio.enviarEnlaceRecuperacion(request);
+
+        // Assert
+        Mockito.verify(request).setAttribute("estado", "enlaceRecuperacion");
+        Mockito.verify(notificacionService).enviarEnlaceRecuperacion(usuario, token);
+    }
 }
