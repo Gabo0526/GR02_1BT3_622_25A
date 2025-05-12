@@ -1,5 +1,6 @@
 package com.ma.gr02_1bt3_622_25a.model.dao;
 
+import com.ma.gr02_1bt3_622_25a.model.entity.AlquilerCasillero;
 import com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero;
 import com.ma.gr02_1bt3_622_25a.model.entity.Casillero;
 import jakarta.persistence.EntityManager;
@@ -56,5 +57,9 @@ public class CasilleroDAO extends GenericDAO<Casillero> {
         } finally {
             em.close();
         }
+    }
+
+    public boolean actualizarEstadoCasilleroDadoAlquiler(AlquilerCasillero alquilerCasillero, String nuevoEstado) {
+        return actualizarEstadoCasillero(alquilerCasillero.getIdCasillero().getId(), nuevoEstado);
     }
 }
