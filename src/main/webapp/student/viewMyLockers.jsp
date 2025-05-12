@@ -336,15 +336,23 @@ To change this template use File | Settings | File Templates.
                     </div>
                 </div>
                 <div class="button-container">
-                    <button class="btn btn-outline">
-                        <span class="icon icon-refresh"></span>
-                        Intercambiar
-                    </button>
-                    <button class="btn btn-danger">
-                        <span class="icon icon-alert"></span>
-                        Notificar
-                        Daño
-                    </button>
+                    <form action="nombreloquesea" method="post">
+                        <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
+                        <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
+                        <button class="btn btn-outline">
+                            <span class="icon icon-refresh"></span>
+                            Intercambiar
+                        </button>
+                    </form>
+                    <form action="nombreloquesea" method="post">
+                        <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
+                        <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
+                        <button class="btn btn-danger">
+                            <span class="icon icon-alert"></span>
+                            Notificar
+                            Daño
+                        </button>
+                    </form>
                 </div>
             </div>
 
