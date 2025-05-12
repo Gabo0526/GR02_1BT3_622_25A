@@ -1,6 +1,7 @@
 <%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.Casillero" %>
 <%@ page import="com.ma.gr02_1bt3_622_25a.model.entity.BloqueCasillero" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.ma.gr02_1bt3_622_25a.service.ServicioVerCasilleros" %><%--
   Created by IntelliJ IDEA.
   User: DVC
   Date: 27/4/2025
@@ -11,10 +12,7 @@
 <%BloqueCasillero bloqueCasillero = (BloqueCasillero) request.getAttribute("bloque");%>
 <%List<Casillero> casilleros = (List<Casillero>) request.getAttribute("casilleros");%>
 <%
-    String modoOperacion = (String) request.getAttribute("modo");
-    if (modoOperacion == null) {
-        modoOperacion = "reservar"; // Valor por defecto
-    }
+    String modoOperacion = new ServicioVerCasilleros().getViewMode(request);
 %>
 <!DOCTYPE html>
 <html lang="es">
