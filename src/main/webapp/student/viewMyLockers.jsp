@@ -145,6 +145,30 @@ To change this template use File | Settings | File Templates.
             gap: 0.75rem;
         }
 
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .status-Disponible {
+            background-color: var(--success);
+        }
+
+        .status-Ocupado {
+            background-color: var(--occupied);
+        }
+
+        .status-Pendiente {
+            background-color: var(--pending);
+        }
+
+        .status-Averiado {
+            background-color: var(--damaged);
+        }
         .block-name {
             font-size: 1.5rem;
             font-weight: bold;
@@ -189,6 +213,8 @@ To change this template use File | Settings | File Templates.
         }
 
         .btn-outline {
+            width: 100%;
+            height: 100%;
             background-color: var(--card);
             color: var(--primary);
             border: 1px solid var(--primary);
@@ -207,6 +233,13 @@ To change this template use File | Settings | File Templates.
             background-color: #d32f2f;
         }
 
+        .form{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
         .legend {
             background-color: var(--card);
             border-radius: 0.5rem;
@@ -299,6 +332,7 @@ To change this template use File | Settings | File Templates.
             width: 100%;
             left: 0;
         }
+
     </style>
 </head>
 <body>
@@ -326,6 +360,7 @@ To change this template use File | Settings | File Templates.
                 <div class="locker-content">
                     <h2 class="block-name"><%= a.getIdCasillero().getIdBloque().getNombreBloque() %></h2>
                     <div class="locker-number">Casillero #<%= a.getIdCasillero().getNumero()%></div>
+                    <span class="status-badge status-<%= a.getIdCasillero().getEstado()%>"><%= a.getIdCasillero().getEstado()%></span>
                     <div class="locker-info">
                         <span class="info-label">Dimensiones:</span> <%= a.getIdCasillero().getAncho()+ "x"+ a.getIdCasillero().getAltura()+"x"+a.getIdCasillero().getProfundidad()%> cm
                     </div>
@@ -336,7 +371,7 @@ To change this template use File | Settings | File Templates.
                     </div>
                 </div>
                 <div class="button-container">
-                    <form action="nombreloquesea" method="post">
+                    <form class="form" action="CasilleroServlet" method="post">
                         <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
                         <button class="btn btn-outline">
@@ -344,7 +379,7 @@ To change this template use File | Settings | File Templates.
                             Intercambiar
                         </button>
                     </form>
-                    <form action="nombreloquesea" method="post">
+                    <form class="form" action="CasilleroServlet" method="post">
                         <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
                         <button class="btn btn-danger">
@@ -363,8 +398,26 @@ To change this template use File | Settings | File Templates.
         </div>
     </div>
 
-</div>
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color color-disponible"></div>
+            <span>Disponible</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color color-ocupado"></div>
+            <span>Ocupado</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color color-pendiente"></div>
+            <span>Pendiente</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color color-averiado"></div>
+            <span>Averiado</span>
+        </div>
+    </div>
 
+</div>
 <div class="footer">
     Sistema de Gestión de Casilleros &copy; 2025
 </div>
