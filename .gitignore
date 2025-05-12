@@ -39,3 +39,4 @@ build/
 /src/main/resources/META-INF/persistence.xml
 /.idea/dataSources.xml
 /.idea/jpa.xml
+/.idea/misc.xml
