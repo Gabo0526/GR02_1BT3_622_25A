@@ -18,8 +18,7 @@ class CasilleroDAOTest {
     @MethodSource("provideUpdateLockerStateParametersGivenAlquilerCasillero")
     public void givenAlquilerCasillero_whenUpdateLockerState_thenCheckState(AlquilerCasillero alquilerCasillero, String nuevoEstado) {
         boolean resultado = casilleroDAO.actualizarEstadoCasilleroDadoAlquiler(alquilerCasillero, nuevoEstado);
-        Casillero casillero = casilleroDAO.find(alquilerCasillero.getIdCasillero().getId());
-        String estadoActual = casillero.getEstado();
+        String estadoActual = casilleroDAO.find(alquilerCasillero.getIdCasillero().getId()).getEstado();
 
         assertTrue(resultado);
         assertEquals(nuevoEstado, estadoActual);

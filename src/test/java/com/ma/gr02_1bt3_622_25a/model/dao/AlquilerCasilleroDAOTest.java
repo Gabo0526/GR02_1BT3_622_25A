@@ -26,9 +26,11 @@ class AlquilerCasilleroDAOTest {
         boolean success = alquilerCasilleroDAO.intercambiarCasillero(nuevoCasillero, idAlquiler);
         assertTrue(success);
 
-        assertEquals("Ocupado", casilleroDAO.find(nuevoCasillero.getId()).getEstado());
+        String estadoActualNuevoCasillero = casilleroDAO.find(nuevoCasillero.getId()).getEstado();
+        assertEquals("Ocupado", estadoActualNuevoCasillero);
 
-        assertEquals("Disponible", casilleroDAO.find(alquilerCasillero.getIdCasillero().getId()).getEstado());
+        String estadoActualViejoCasillero = casilleroDAO.find(alquilerCasillero.getIdCasillero().getId()).getEstado();
+        assertEquals("Disponible", estadoActualViejoCasillero);
     }
 
     public static Stream<Arguments> provideLockerExchangeParameters() {

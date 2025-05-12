@@ -19,10 +19,8 @@ public class MisCasillerosServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Usuario usuario = (Usuario) session.getAttribute("usuario");
 
-        AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
-        List<AlquilerCasillero> alquileres = alquilerCasilleroDAO.obtenerAlquileresPorUsuario(usuario);
+        List<AlquilerCasillero> alquileres = new AlquilerCasilleroDAO().obtenerAlquileresPorUsuario((Usuario) session.getAttribute("usuario"));
 
         request.setAttribute("alquileres", alquileres);
 
