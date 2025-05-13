@@ -26,4 +26,13 @@ public class MisCasillerosServlet extends HttpServlet {
 
         request.getRequestDispatcher("student/viewMyLockers.jsp").forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String casilleroId = request.getParameter("casilleroId");
+        String alquilerId = request.getParameter("alquilerId");
+        AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
+        AlquilerCasillero alquiler = alquilerCasilleroDAO.find(Integer.parseInt(alquilerId));
+    }
 }

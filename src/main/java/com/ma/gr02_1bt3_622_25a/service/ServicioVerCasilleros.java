@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletRequest;
 public class ServicioVerCasilleros {
 
     public String getViewMode(HttpServletRequest request) {
-        String viewMode = (String) request.getAttribute("modo");
+        String viewMode = (String) request.getParameter("modo");
         if (viewMode == null) {
             return "reservar";
         }

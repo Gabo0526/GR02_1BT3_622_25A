@@ -73,7 +73,7 @@
     <input type="text" name="nombre" placeholder="Nombre" required />
     <input type="text" name="apellido" placeholder="Apellido" required />
     <input type="text" name="codigoUnico" placeholder="Código Único" required />
-    <input type="email" name="email" placeholder="Correo" required />
+    <input type="email" name="email" placeholder="Correo Institucional" required />
     <input type="password" name="password" placeholder="Clave" required />
     <select name="facultad" required>
       <option value="Ciencias">Ciencias</option>

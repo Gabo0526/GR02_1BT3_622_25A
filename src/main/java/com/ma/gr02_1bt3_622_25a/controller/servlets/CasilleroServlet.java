@@ -18,7 +18,11 @@ public class CasilleroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String idBloque = request.getParameter("idBloque");
+        String idBloque = request.getParameter("idBloque") == null ?  (String) request.getAttribute("idBloque"): request.getParameter("idBloque");
+
+        if (idBloque == null) {
+            idBloque = "1"; // Valor por defecto si no se proporciona idBloque
+        }
 
         BloqueCasilleroDAO bloqueCasilleroDAO = new BloqueCasilleroDAO();
         CasilleroDAO casilleroDAO = new CasilleroDAO();
@@ -36,9 +40,6 @@ public class CasilleroServlet extends HttpServlet {
         // session.setAttribute("nroBloques", nroBloques);
         // request.setAttribute("usuario", session.getAttribute("usuario"));
 
-        // Para el modo de viewLockers.jsp:
-        // request.setAttribute("modo", "intercambiar");
-
         // Parametros de la peticion:
         // idBloque, casilleros, bloque, nroBloques
         request.getRequestDispatcher("viewLockers.jsp").forward(request, response);
@@ -46,7 +47,7 @@ public class CasilleroServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ServletException {
+            throws IOException {
         String idCasillero = request.getParameter("idCasillero");
         String estado = request.getParameter("disponibilidadSelect");
 

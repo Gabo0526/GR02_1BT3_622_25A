@@ -371,15 +371,16 @@ To change this template use File | Settings | File Templates.
                     </div>
                 </div>
                 <div class="button-container">
-                    <form class="form" action="CasilleroServlet" method="post">
+                    <form class="form" action="CasilleroServlet" method="get">
                         <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
+                        <input type="hidden" name="modo" value="intercambiar">
                         <button class="btn btn-outline">
                             <span class="icon icon-refresh"></span>
                             Intercambiar
                         </button>
                     </form>
-                    <form class="form" action="CasilleroServlet" method="post">
+                    <form class="form" action="noHayServlet" method="post">
                         <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
                         <button class="btn btn-danger">

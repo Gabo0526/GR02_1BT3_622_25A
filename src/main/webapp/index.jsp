@@ -77,8 +77,8 @@
             <option value="Estudiante">Estudiante</option>
             <option value="Administrador">Administrador</option>
         </select>
-        <input type="email" name="email" placeholder="Correo" />
-        <input type="password" name="password" placeholder="Clave" />
+        <input type="email" name="email" placeholder="Correo" required />
+        <input type="password" name="password" placeholder="Clave" required />
         <button type="submit">Ingresar al sistema</button>
         <p style="text-align: center; margin-top: 20px">
             ¿Aún no posees una cuenta? <a href="register.jsp">Registrarse</a>

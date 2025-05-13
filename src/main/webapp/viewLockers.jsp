@@ -517,6 +517,13 @@
         <%for (int i = 1; i <= (Integer) request.getAttribute("nroBloques"); i++){%>
         <form action="CasilleroServlet" method="get" style="display: inline;">
             <input type="hidden" name="idBloque" value="<%=i%>" />
+            <% if (request.getParameter("casilleroId") != null) { %>
+                <input type="hidden" name="casilleroId" value="<%=request.getParameter("casilleroId")%>" />
+            <% } %>
+            <% if (request.getParameter("alquilerId") != null) { %>
+                <input type="hidden" name="alquilerId" value="<%=request.getParameter("alquilerId")%>" />
+            <% } %>
+            <input type="hidden" name="modo" value="<%=modoOperacion%>" />
             <button type="submit" class="boton-bloque"><%=i%></button>
         </form>
         <%}%>
