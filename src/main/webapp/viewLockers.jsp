@@ -627,11 +627,12 @@
                 String funcionBoton = modoOperacion.equals("intercambiar") ? "intercambiarCasillero()" : "reservarCasillero()";
             %>
 
+            <% if(!(boolean) request.getAttribute("existeAlquiler")){%>
             <button onclick="<%= funcionBoton %>"
                     style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>">
                 <%= textoBoton %>
             </button>
-
+            <%}%>
             <button onclick="cerrarEmergente()">Cerrar</button>
         </div>
     </div>

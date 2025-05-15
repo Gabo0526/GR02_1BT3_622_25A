@@ -53,10 +53,25 @@ public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
 
     public List<AlquilerCasillero> obtenerAlquileresPorUsuario(Usuario usuario) {
         try (EntityManager em = emf.createEntityManager()) {
-            TypedQuery<AlquilerCasillero> query = em.createNamedQuery("AlquilerCasillero.findActiveByUser", AlquilerCasillero.class)
-                    .setParameter(1, usuario);
+            TypedQuery<AlquilerCasillero> query = em.createNamedQuery("AlquilerCasillero.findLockerByUser", AlquilerCasillero.class)
+                    .setParameter(1, usuario)
+                    .setParameter(2, "Activo");
 
             return new ServicioAlquilerCasillero().procesarResultadosConsulta(query.getResultList());
+        }
+    }
+
+    public boolean detectarAlquileresActivosPorUsuario(Usuario usuario) {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<AlquilerCasillero> query = em.createNamedQuery("AlquilerCasillero.findLockerByUser", AlquilerCasillero.class)
+                    .setParameter(1, usuario)
+                    .setParameter(2, "Pendiente");
+
+            List<AlquilerCasillero> resultados = query.getResultList();
+            return resultados != null && !resultados.isEmpty();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

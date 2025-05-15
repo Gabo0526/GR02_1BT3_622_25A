@@ -18,6 +18,7 @@ public class ServicioAlquilerCasillero {
     private final AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
 
     public void registrarSolicitud(Usuario usuario, int idCasillero, double costo, String rutaComprobante) {
+
         Casillero casillero = casilleroDAO.find(idCasillero);
 
         AlquilerCasillero alquiler = new AlquilerCasillero();
