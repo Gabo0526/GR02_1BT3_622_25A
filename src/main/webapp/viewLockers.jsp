@@ -625,7 +625,7 @@
             %>
 
             <% if(!(boolean) request.getAttribute("existeAlquiler")){%>
-            <button onclick="<%= funcionBoton %>"
+            <button id="botonReservar" onclick="<%= funcionBoton %>"
                     style="<%=(session.getAttribute("rolUsuario").equals("Administrador") ? "display:none;" : "")%>">
                 <%= textoBoton %>
             </button>
@@ -674,13 +674,16 @@
         modalTitle.classList.add(disponibilidad.toLowerCase());
 
         // Mostrar o no botón de reservar según disponibilidad
-        const btnReservar = document.querySelector(".botones button:first-child");
-        if (disponibilidad === "Disponible" && isStudentRole) {
-            btnReservar.style.display = "inline-block";
-        } else {
-            btnReservar.style.display = "none";
-        }
+        const btnReservar = document.getElementById("botonReservar");
 
+        if (btnReservar) {
+            if (disponibilidad === "Disponible" && isStudentRole) {
+                btnReservar.style.display = "inline-block";
+            } else {
+                btnReservar.style.display = "none";
+            }
+        }
+        
         // Mostrar modal con animación
         modal.style.display = "flex";
     }
