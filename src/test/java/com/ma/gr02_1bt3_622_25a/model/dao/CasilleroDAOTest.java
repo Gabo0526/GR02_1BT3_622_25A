@@ -1,7 +1,6 @@
 package com.ma.gr02_1bt3_622_25a.model.dao;
 
 import com.ma.gr02_1bt3_622_25a.model.entity.AlquilerCasillero;
-import com.ma.gr02_1bt3_622_25a.model.entity.Casillero;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

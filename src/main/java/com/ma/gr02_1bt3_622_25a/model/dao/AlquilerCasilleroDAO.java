@@ -9,8 +9,8 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
     public AlquilerCasilleroDAO() {
@@ -32,15 +32,44 @@ public class AlquilerCasilleroDAO extends GenericDAO<AlquilerCasillero> {
         try {
             tx.begin();
 
+            // 1. Actualizar el estado del alquiler principal
             Query query = em.createNamedQuery("AlquilerCasillero.updateState")
                     .setParameter(1, estado)
                     .setParameter(2, idAlquiler);
 
             int filasAfectadas = query.executeUpdate();
 
-            tx.commit();
+            // 2. Procesar lógica de intercambio si el nuevo estado es "Activo"
+            if ("Activo".equals(estado)) {
+                AlquilerCasillero alquiler = em.find(AlquilerCasillero.class, idAlquiler);
 
+                if (alquiler != null) {
+                    Map<String, Object> detalle = alquiler.getDetalleAlquiler();
+
+                    if (detalle != null && detalle.containsKey("intercambio")) {
+                        Object idIntercambioObj = detalle.get("intercambio");
+
+                        if (idIntercambioObj != null) {
+                            try {
+                                int idIntercambio = Integer.parseInt(idIntercambioObj.toString());
+
+                                AlquilerCasillero alquilerIntercambio = em.find(AlquilerCasillero.class, idIntercambio);
+                                if (alquilerIntercambio != null) {
+                                    alquilerIntercambio.setEstadoAlquiler("Vencido");
+                                    em.merge(alquilerIntercambio);
+                                }
+                            } catch (NumberFormatException ex) {
+                                // Log: ID de intercambio no es un entero válido
+                                System.err.println("ID de intercambio inválido en detalleAlquiler: " + idIntercambioObj);
+                            }
+                        }
+                    }
+                }
+            }
+
+            tx.commit();
             return filasAfectadas > 0;
+
         } catch (Exception e) {
             if (tx.isActive()) {
                 tx.rollback();

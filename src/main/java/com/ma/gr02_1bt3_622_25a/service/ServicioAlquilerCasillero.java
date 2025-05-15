@@ -17,14 +17,8 @@ public class ServicioAlquilerCasillero {
     private final CasilleroDAO casilleroDAO = new CasilleroDAO();
     private final AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
 
-    public void registrarSolicitud(Usuario usuario, int idCasillero, double costo, String rutaComprobante) {
-
-        Casillero casillero = casilleroDAO.find(idCasillero);
-
-        AlquilerCasillero alquiler = new AlquilerCasillero();
-        alquiler.setIdUsuario(usuario);
-        alquiler.setIdCasillero(casillero);
-        alquiler.setDetalleAlquiler(Map.of("costo", costo, "ruta", rutaComprobante));
+    public void registrarSolicitud(AlquilerCasillero alquiler, int idCasillero) {
+        alquiler.setIdCasillero(casilleroDAO.find(idCasillero));
 
         LocalDateTime fecha = LocalDateTime.of(2025, 8, 4, 0, 0);
         Instant vencimiento = fecha.atZone(ZoneId.of("America/Guayaquil")).toInstant();

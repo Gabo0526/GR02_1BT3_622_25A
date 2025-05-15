@@ -517,9 +517,6 @@
         <%for (int i = 1; i <= (Integer) request.getAttribute("nroBloques"); i++){%>
         <form action="CasilleroServlet" method="get" style="display: inline;">
             <input type="hidden" name="idBloque" value="<%=i%>" />
-            <% if (request.getParameter("casilleroId") != null) { %>
-                <input type="hidden" name="casilleroId" value="<%=request.getParameter("casilleroId")%>" />
-            <% } %>
             <% if (request.getParameter("alquilerId") != null) { %>
                 <input type="hidden" name="alquilerId" value="<%=request.getParameter("alquilerId")%>" />
             <% } %>
@@ -624,7 +621,7 @@
         <div class="botones">
             <%
                 String textoBoton = modoOperacion.equals("intercambiar") ? "Intercambiar" : "Reservar";
-                String funcionBoton = modoOperacion.equals("intercambiar") ? "intercambiarCasillero()" : "reservarCasillero()";
+                String funcionBoton = modoOperacion.equals("intercambiar") ? "intercambiarCasillero(" + request.getParameter("alquilerId") + ")" : "reservarCasillero()";
             %>
 
             <% if(!(boolean) request.getAttribute("existeAlquiler")){%>
@@ -714,7 +711,7 @@
         }, 500);
     }
 
-    function intercambiarCasillero() {
+    function intercambiarCasillero(idAlquiler) {
         const casilleroId = document.getElementById("idCasillero").value;
 
         const btn = event.target;
@@ -722,9 +719,27 @@
         btn.innerHTML = '<span class="spinner"></span> Procesando...';
         btn.disabled = true;
 
-        // Redirigir al servlet para intercambio
+        // Crear y enviar un formulario de manera dinámica con método POST
+        const form = document.createElement("form");
+        form.method = "POST";
+        form.action = "IntercambioCasillerosServlet";
+
+        const inputCasilleroId = document.createElement("input");
+        inputCasilleroId.type = "hidden";
+        inputCasilleroId.name = "casilleroId";
+        inputCasilleroId.value = casilleroId;
+        form.appendChild(inputCasilleroId);
+
+        const inputIdAlquiler = document.createElement("input");
+        inputIdAlquiler.type = "hidden";
+        inputIdAlquiler.name = "idAlquilerActivo";
+        inputIdAlquiler.value = idAlquiler;
+        form.appendChild(inputIdAlquiler);
+
+        document.body.appendChild(form);
+
         setTimeout(function () {
-            window.location.href = "IntercambioCasilleroServlet?casilleroId=" + casilleroId;
+            form.submit();
         }, 500);
     }
 </script>

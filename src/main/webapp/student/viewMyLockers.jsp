@@ -372,7 +372,6 @@ To change this template use File | Settings | File Templates.
                 </div>
                 <div class="button-container">
                     <form class="form" action="CasilleroServlet" method="get">
-                        <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
                         <input type="hidden" name="modo" value="intercambiar">
                         <button class="btn btn-outline">
@@ -381,7 +380,6 @@ To change this template use File | Settings | File Templates.
                         </button>
                     </form>
                     <form class="form" action="noHayServlet" method="post">
-                        <input type="hidden" name="casilleroId" value="<%= a.getIdCasillero().getId() %>">
                         <input type="hidden" name="alquilerId" value="<%= a.getId() %>">
                         <button class="btn btn-danger">
                             <span class="icon icon-alert"></span>

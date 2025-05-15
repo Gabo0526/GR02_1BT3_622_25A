@@ -12,6 +12,7 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "SolicitudServlet", urlPatterns = {"/SolicitudServlet"})
 @MultipartConfig
@@ -61,7 +62,12 @@ public class SolicitudesAlquilerCasillerosServlet extends HttpServlet {
                 Part imagen = request.getPart("imagen");
 
                 String rutaComprobante = servicioArchivo.guardarImagen(imagen);
-                servicioAlquiler.registrarSolicitud(usuario, idCasillero, costo, rutaComprobante);
+
+                AlquilerCasillero alquiler = new AlquilerCasillero();
+                alquiler.setIdUsuario(usuario);
+                alquiler.setDetalleAlquiler(Map.of("costo", costo, "ruta", rutaComprobante));
+
+                servicioAlquiler.registrarSolicitud(alquiler, idCasillero);
 
                 response.sendRedirect("CasilleroServlet?idBloque=" + request.getParameter("numeroBloque"));
 

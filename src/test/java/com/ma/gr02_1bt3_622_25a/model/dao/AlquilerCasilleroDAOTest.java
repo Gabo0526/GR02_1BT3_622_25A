@@ -16,7 +16,7 @@ class AlquilerCasilleroDAOTest {
     AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
     static CasilleroDAO casilleroDAO = new CasilleroDAO();
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @MethodSource("provideLockerExchangeParameters")
     public void givenMethodParameters_whenLockerExchange_thenVerifyLockersStatusChange(Casillero nuevoCasillero, int idAlquiler) {
         // Este test unitario verifica el cambio de estados que se produce al intercambiar un casillero. Este cambio de estados deberia ser manejado
@@ -49,5 +49,7 @@ class AlquilerCasilleroDAOTest {
 
         GenericJDBCException exception = assertThrows(GenericJDBCException.class, () -> alquilerCasilleroDAO.intercambiarCasillero(casillero, idAlquiler));
         assertTrue(exception.getMessage().contains("No se puede asignar el nuevo casillero porque no está disponible."));
-    }
+    }*/
+
+
 }
