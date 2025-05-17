@@ -2,6 +2,15 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/java/com/ma/gr02_1bt3_622_25a/model/dao/UsuarioDAO.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/db2.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/h2.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/hsqldb.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/mssql.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/mysql.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/oracle.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/postgresql.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/sqllite.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/logback-classic-1.5.13.jar/ch/qos/logback/classic/db/script/sybaseSqlAnywhere.sql" dialect="GenericSQL" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
