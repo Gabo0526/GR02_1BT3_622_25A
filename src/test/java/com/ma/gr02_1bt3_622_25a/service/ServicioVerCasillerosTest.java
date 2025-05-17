@@ -27,7 +27,7 @@ class ServicioVerCasillerosTest {
         // Arrange
         ServicioVerCasilleros servicio = new ServicioVerCasilleros();
         HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
-        Mockito.when(request.getAttribute("modo")).thenReturn("someViewMode");
+        Mockito.when(request.getParameter("modo")).thenReturn("someViewMode");
         String expectedViewMode = "someViewMode";
 
         // Act

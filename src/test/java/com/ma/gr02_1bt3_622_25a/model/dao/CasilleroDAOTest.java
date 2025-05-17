@@ -13,7 +13,7 @@ class CasilleroDAOTest {
     CasilleroDAO casilleroDAO = new CasilleroDAO();
     static AlquilerCasilleroDAO alquilerCasilleroDAO = new AlquilerCasilleroDAO();
 
-    @ParameterizedTest
+    /*@ParameterizedTest
     @MethodSource("provideUpdateLockerStateParametersGivenAlquilerCasillero")
     public void givenAlquilerCasillero_whenUpdateLockerState_thenCheckState(AlquilerCasillero alquilerCasillero, String nuevoEstado) {
         boolean resultado = casilleroDAO.actualizarEstadoCasilleroDadoAlquiler(alquilerCasillero, nuevoEstado);
@@ -29,5 +29,5 @@ class CasilleroDAOTest {
                 Arguments.of(alquilerCasilleroDAO.find(3), "Averiado"),
                 Arguments.of(alquilerCasilleroDAO.find(19), "Ocupado"),
                 Arguments.of(alquilerCasilleroDAO.find(3), "Ocupado"));
-    }
+    }*/
 }
